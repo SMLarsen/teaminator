@@ -15,7 +15,7 @@ app.get('/', function(req, res){
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
-app.use("/team", team);
+app.use('/team', team);
 
 app.listen(portDecision, function(){
   console.log("Listening on port: ", portDecision);

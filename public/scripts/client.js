@@ -1,4 +1,5 @@
-var app = angular.module('app', ['ngRoute', 'ngMaterial']);
+/*jshint esversion: 6 */
+const app = angular.module('app', ['ngRoute', 'ngMaterial']);
 
 app.config(function ($routeProvider, $mdThemingProvider) {
 
@@ -9,12 +10,12 @@ app.config(function ($routeProvider, $mdThemingProvider) {
     //   .dark();
 
     $routeProvider
-      .when('/', {
+      .when('/home', {
         templateUrl: 'views/templates/home.html',
         controller: 'HomeController',
         controllerAs: 'home'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: 'home'
       });
   });
