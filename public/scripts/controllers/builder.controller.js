@@ -1,4 +1,4 @@
-angular.module('app').controller('BuilderController', ['$http', function($http, $timeout){
+angular.module('app').controller('BuilderController', ['$http', '$location', function($http, $location){
     console.log('builder controller running');
     const self = this;
 
@@ -26,10 +26,17 @@ angular.module('app').controller('BuilderController', ['$http', function($http, 
         projectName: self.projectName,
         teamCount : self.teamCount
       }
-
-    }).then(function(res){
+    })
+    .then(function(res) {
       console.log("SUCCESS");
+      $location.path('/teams');
     })
   }
 
-  }]);
+  }])
+  .config(function($mdThemingProvider) {
+  $mdThemingProvider.theme('dark-grey').backgroundPalette('grey').dark();
+  $mdThemingProvider.theme('dark-orange').backgroundPalette('orange').dark();
+  $mdThemingProvider.theme('dark-purple').backgroundPalette('deep-purple').dark();
+  $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
+});//end controller config
