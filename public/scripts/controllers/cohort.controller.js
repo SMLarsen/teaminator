@@ -4,6 +4,7 @@ angular.module('app')
     const self = this;
 
     self.cohort = {};
+    self.teams = {};
 
     function getCohorts(){
       let promise = $http({
@@ -16,5 +17,5 @@ angular.module('app')
     }
 
     getCohorts();
-    
+
 }]);
