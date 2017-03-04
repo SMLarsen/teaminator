@@ -12,7 +12,8 @@ angular.module('app')
         method: 'GET',
         url: '/cohort'
       }).then(function(response){
-        self.cohort = response.data
+        self.cohorts = response.data
+        console.log(self.cohorts[0].name);
       });
       return promise;
     }
