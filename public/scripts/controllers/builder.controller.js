@@ -3,7 +3,7 @@ angular.module('app').controller('BuilderController', ['$http', function($http, 
     const self = this;
 
 
-
+  self.teamCount;
   self.items = ['chris', 'andrew', 'joe'];
   self.cohorts = [1,2,3,4];
   self.projectName = "Phil";
@@ -14,7 +14,22 @@ angular.module('app').controller('BuilderController', ['$http', function($http, 
     return this.cohorts;
 
 
+
 };
 
+  self.build = function () {
+    console.log('clicked');
+    $http({
+      method: "POST",
+      url: "/project",
+      data: {
+        projectName: self.projectName,
+        teamCount : self.teamCount
+      }
+
+    }).then(function(res){
+      console.log("SUCCESS");
+    })
+  }
 
   }]);
