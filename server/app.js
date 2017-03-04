@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const project = require('./routes/project');
 const cohort = require('./routes/cohort');
 const team = require('./routes/team');
+const member = require('./routes/member');
 const person = require('./routes/person');
 
 const portDecision = process.env.PORT || 5000;
@@ -24,6 +25,7 @@ app.use('/cohort', cohort);
 app.use('/project', project);
 //Steve
 app.use('/team', team);
+app.use('/member', member);
 //Jeff
 app.use('/person', person);
 
