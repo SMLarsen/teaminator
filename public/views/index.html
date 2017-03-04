@@ -1,34 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Teaminator Team Builder</title>
-    <!-- Styles-->
-    <link rel="stylesheet" href="../styles/style.css">
-    <!-- Vendor -->
-    <link rel="stylesheet" href="../vendor/angular-material.min.css">
-    <script src="../vendor/angular.min.js"></script>
-    <script src="../vendor/angular-route.min.js"></script>
-    <script src="../vendor/angular-animate.min.js"></script>
-    <script src="../vendor/angular-aria.min.js"></script>
-    <script src="../vendor/angular-material.min.js"></script>
 
-    <!-- APP -->
-    <script src="../scripts/client.js"></script>
+<head>
+  <meta charset="utf-8">
+  <title>Teaminator Team Builder</title>
 
-    <!-- CONTROLLERS -->
-    <script src="../scripts/controllers/home.controller.js"></script>
+  <!-- Styles-->
+  <link rel="stylesheet" href="../styles/style.css">
+  <link rel="stylesheet" href="../styles/builder.css">
 
-    <!-- SERVICES -->
+  <!-- Vendor -->
+  <link rel="stylesheet" href="../vendor/angular-material.min.css">
+  <script src="../vendor/angular.min.js"></script>
+  <script src="../vendor/angular-route.min.js"></script>
+  <script src="../vendor/angular-animate.min.js"></script>
+  <script src="../vendor/angular-aria.min.js"></script>
+  <script src="../vendor/angular-material.min.js"></script>
 
-    <!-- DIRECTIVES -->
+  <!-- APP -->
+  <script src="../scripts/client.js"></script>
 
-  </head>
+  <!-- CONTROLLERS -->
+  <script src="../scripts/controllers/home.controller.js"></script>
+  <script src="../scripts/controllers/builder.controller.js"></script>
 
-  <body ng-app="app" >
-      <md-toolbar class="md-medium-tall" layout="row" layout-align="center center">
-        <h1>Teaminator Team Builder</h1>
-      </md-toolbar>
-    <main ng-view></main>
-  </body>
+  <!-- SERVICES -->
+
+  <!-- DIRECTIVES -->
+
+</head>
+
+<body ng-app="app">
+  <ng-include src="'../views/templates/nav.html'"></ng-include>
+  <main ng-view></main>
+</body>
+
 </html>
