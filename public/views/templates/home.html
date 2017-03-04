@@ -5,9 +5,12 @@
     <md-input-container>
       <label>Select Cohort…</label>
       <md-select ng-model="home.selectedCohort">
-        <md-option ng-repeat="cohort in home.CohortFactory.cohorts" value="{{cohort}}">{{cohort}}</md-option>
+        <md-option ng-repeat="cohort in home.cohorts track by cohort.id" value="{{cohort}}">{{cohort.name}}</md-option>
       </md-select>
     </md-input-container>
+    <md-card-actions>
+      <md-button class="md-raised" ng-click="home.next()">NEXT</md-button>
+    </md-card-actions>
 
     <md-button class="md-primary md-raised" ng-href="#!manager">Manage Cohorts</md-button>
 

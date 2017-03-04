@@ -2,9 +2,11 @@ angular.module('app').controller('BuilderController', ['$http', '$location', 'Co
     console.log('builder controller running');
     const self = this;
 
+    self.true = true;
+
 
   self.teamCount;
-  self.items = ['chris', 'andrew', 'joe'];
+  self.students = ['chris', 'andrew', 'joe'];
   self.cohorts = [1,2,3,4];
   self.projectName = "Phil";
   self.loadCohort = function() {

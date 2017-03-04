@@ -1,7 +1,9 @@
 app.factory('CohortFactory', ['$http', function($http) {
-  
-  var cohorts = ['Pi', 'Rho', 'Sigma', 'Tau', 'Chi'];
-  
+
+  var cohorts = {
+    array: ['Pi', 'Rho', 'Sigma', 'Tau', 'Chi'],
+    selectedCohort: ''
+  }
   // getAll();
   // function getAll() {
   //   return $http({
@@ -22,4 +24,3 @@ app.factory('CohortFactory', ['$http', function($http) {
     cohorts: cohorts
   };
 }]);
-
