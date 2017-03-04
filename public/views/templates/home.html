@@ -1,2 +1,18 @@
+<md-content layout="column" layout-align="center center">
 
-<h2>Home Template</h2>
+  <md-card layout="column" layout-align="center center">
+
+    <h1>Teaminator</h1>
+
+    <md-input-container>
+    <label>Select Cohort…</label>
+      <md-select ng-model="home.selectedCohort">
+        <md-option ng-repeat="cohort in home.cohorts" value="{{cohort}}">{{cohort}}</md-option>
+      </md-select>
+    </md-input-container>
+
+    <md-button ng-href="#!cohort">Create/Manage Cohorts</md-button>
+
+  </md-card>
+
+</md-content>
