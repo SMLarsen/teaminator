@@ -1,8 +1,8 @@
 /*jshint esversion: 6 */
-angular.module('app').controller('HomeController', ['$http', function($http) {
+angular.module('app').controller('HomeController', ['$http', 'Cohort', function($http, Cohort) {
   const self = this;
 
-  self.cohorts = ['Pi', 'Rho', 'Sigma', 'Tau', 'Chi'];
+  self.CohortFactory = CohortFactory;
   self.selectedCohort = '';
 
 }]);
