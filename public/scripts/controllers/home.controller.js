@@ -6,4 +6,3 @@ angular.module('app').controller('HomeController', ['$http', function($http) {
   self.selectedCohort = '';
 
 }]);
-
