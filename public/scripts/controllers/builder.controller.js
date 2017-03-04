@@ -1,42 +1,38 @@
-angular.module('app')
-  .controller('BuilderController', ['$http', function($http){
+angular.module('app').controller('BuilderController', ['$http', '$location', 'CohortFactory', function($http, $location, CohortFactory){
     console.log('builder controller running');
     const self = this;
 
 
+  self.teamCount;
+  self.items = ['chris', 'andrew', 'joe'];
+  self.cohorts = [1,2,3,4];
+  self.projectName = "Phil";
+  self.loadCohort = function() {
 
-  this.items = [1,2,3,4,5];
-  this.selected = [1];
-  this.toggle = function (item, list) {
-    var idx = list.indexOf(item);
-    if (idx > -1) {
-      list.splice(idx, 1);
-    }
-    else {
-      list.push(item);
-    }
+
+  // Use timeout to simulate a 650ms request.
+    return this.cohorts;
+
+
+
+};
+
+  self.build = function () {
+    let cohortId = CohortFactory.cohortId;
+    console.log('clicked');
+    $http({
+      method: "POST",
+      url: "/project",
+      data: {
+        projectName: self.projectName,
+        teamCount : self.teamCount,
+        cohortId: cohortId
+      }
+    })
+    .then(function(res) {
+      console.log("SUCCESS");
+      $location.path('/teams');
+    });
   };
 
-  this.exists = function (item, list) {
-    return list.indexOf(item) > -1;
-  };
-
-  this.isIndeterminate = function() {
-    return ($scope.selected.length !== 0 &&
-        $scope.selected.length !== $scope.items.length);
-  };
-
-  this.isChecked = function() {
-    return $scope.selected.length === $scope.items.length;
-  };
-
-  this.toggleAll = function() {
-    if ($scope.selected.length === $scope.items.length) {
-      $scope.selected = [];
-    } else if ($scope.selected.length === 0 || $scope.selected.length > 0) {
-      $scope.selected = $scope.items.slice(0);
-    }
-  };
-// });
-
-  }]);
+}]);//End controller
