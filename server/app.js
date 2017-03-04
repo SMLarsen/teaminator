@@ -5,7 +5,7 @@ const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 // const project = require('./routes/project');
-// const cohort = require('./routes/cohort');
+const cohort = require('./routes/cohort');
 const team = require('./routes/team');
 // const person = require('./routes/person');
 
@@ -18,7 +18,7 @@ app.get('/', function(req, res){
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
-// app.use('/cohort', cohort);
+app.use('/cohort', cohort);
 // app.use('/project', project);
 app.use('/team', team);
 // app.use('/person', person);
