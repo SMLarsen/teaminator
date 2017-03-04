@@ -1,4 +1,4 @@
-angular.module('app').controller('BuilderController', ['$http', '$location', function($http, $location){
+angular.module('app').controller('BuilderController', ['$http', '$location', 'CohortFactory', function($http, $location, CohortFactory){
     console.log('builder controller running');
     const self = this;
 
@@ -18,25 +18,21 @@ angular.module('app').controller('BuilderController', ['$http', '$location', fun
 };
 
   self.build = function () {
+    let cohortId = CohortFactory.cohortId;
     console.log('clicked');
     $http({
       method: "POST",
       url: "/project",
       data: {
         projectName: self.projectName,
-        teamCount : self.teamCount
+        teamCount : self.teamCount,
+        cohortId: cohortId
       }
     })
     .then(function(res) {
       console.log("SUCCESS");
       $location.path('/teams');
-    })
-  }
+    });
+  };
 
-  }])
-  .config(function($mdThemingProvider) {
-  $mdThemingProvider.theme('dark-grey').backgroundPalette('grey').dark();
-  $mdThemingProvider.theme('dark-orange').backgroundPalette('orange').dark();
-  $mdThemingProvider.theme('dark-purple').backgroundPalette('deep-purple').dark();
-  $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
-});//end controller config
+}]);//End controller
