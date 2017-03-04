@@ -1,10 +1,25 @@
-app.factory('CohortFactory', ['$http', function($http){
-  console.log('cohort factory running');
+app.factory('CohortFactory', ['$http', function($http) {
+  
+  var cohorts = ['Pi', 'Rho', 'Sigma', 'Tau', 'Chi'];
+  
+  // getAll();
+  // function getAll() {
+  //   return $http({
+  //     method: 'GET',
+  //     url: '/cohorts'
+  //   })
+  //   .then(function(data) {
+  //     cohorts = data;
+  //   })
+  //   .catch(handleError);
+  // }
 
-  var publicApi = {
-    cohorts: ['Pi', 'Rho', 'Sigma', 'Tau', 'Chi']
+  function handleError(err) {
+    console.log('err', err);
+  }
+  return {
+    // getAll: getAll,
+    cohorts: cohorts
   };
-
-  return publicApi;
-
 }]);
+
