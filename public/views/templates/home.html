@@ -1,2 +1,16 @@
+<div class="home-container" flex>
 
-<h2>Home Template</h2>
+  <md-card class="home-card" layout="column" layout-align="center center">
+
+    <md-input-container>
+      <label>Select Cohort…</label>
+      <md-select ng-model="home.selectedCohort">
+        <md-option ng-repeat="cohort in home.cohorts" value="{{cohort}}">{{cohort}}</md-option>
+      </md-select>
+    </md-input-container>
+
+    <md-button class="md-primary md-raised" ng-href="#!manager">Manage Cohorts</md-button>
+
+  </md-card>
+
+</div>

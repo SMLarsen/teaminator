@@ -4,10 +4,11 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
-// const project = require('./routes/project');
-// const cohort = require('./routes/cohort');
+const project = require('./routes/project');
+const cohort = require('./routes/cohort');
 const team = require('./routes/team');
-// const person = require('./routes/person');
+const member = require('./routes/member');
+const person = require('./routes/person');
 
 const portDecision = process.env.PORT || 5000;
 
@@ -19,13 +20,14 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 
 //Jason
-// app.use('/cohort', cohort);
+app.use('/cohort', cohort);
 //Casey & Andrew
-// app.use('/project', project);
+app.use('/project', project);
 //Steve
 app.use('/team', team);
+app.use('/member', member);
 //Jeff
-// app.use('/person', person);
+app.use('/person', person);
 
 app.listen(portDecision, function(){
   console.log("Listening on port: ", portDecision);
