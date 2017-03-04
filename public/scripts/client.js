@@ -14,7 +14,7 @@ app.config(function ($routeProvider, $mdThemingProvider) {
         templateUrl: 'views/templates/home.html',
         controller: 'HomeController',
         controllerAs: 'home'
-      }),
+      })
       .when('/nav', {
         templateUrl: 'views/templates/nav.html',
         controller: 'NavController',
