@@ -1,0 +1,5 @@
+md-list {
+	list-style-type: '>';
+	display: inline;
+	border: 1px solid red;
+}
