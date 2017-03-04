@@ -30,10 +30,10 @@ app.config(function ($routeProvider, $mdThemingProvider) {
         controller: 'TeamController',
         controllerAs: 'teams'
       })
-      .when('/cohort', {
-        templateUrl: 'views/templates/cohort.html',
-        controller: 'CohortController',
-        controllerAs: 'cohort'
+      .when('/manager', {
+        templateUrl: 'views/templates/manager.html',
+        controller: 'ManagerController',
+        controllerAs: 'manager'
       })
       .otherwise({
         redirectTo: 'home'
