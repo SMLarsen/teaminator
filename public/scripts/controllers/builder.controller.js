@@ -1,42 +1,35 @@
-angular.module('app')
-  .controller('BuilderController', ['$http', function($http){
+angular.module('app').controller('BuilderController', ['$http', function($http, $timeout){
     console.log('builder controller running');
     const self = this;
 
 
+  self.teamCount;
+  self.items = ['chris', 'andrew', 'joe'];
+  self.cohorts = [1,2,3,4];
+  self.projectName = "Phil";
+  self.loadCohort = function() {
 
-  this.items = [1,2,3,4,5];
-  this.selected = [1];
-  this.toggle = function (item, list) {
-    var idx = list.indexOf(item);
-    if (idx > -1) {
-      list.splice(idx, 1);
-    }
-    else {
-      list.push(item);
-    }
-  };
 
-  this.exists = function (item, list) {
-    return list.indexOf(item) > -1;
-  };
+  // Use timeout to simulate a 650ms request.
+    return this.cohorts;
 
-  this.isIndeterminate = function() {
-    return ($scope.selected.length !== 0 &&
-        $scope.selected.length !== $scope.items.length);
-  };
 
-  this.isChecked = function() {
-    return $scope.selected.length === $scope.items.length;
-  };
 
-  this.toggleAll = function() {
-    if ($scope.selected.length === $scope.items.length) {
-      $scope.selected = [];
-    } else if ($scope.selected.length === 0 || $scope.selected.length > 0) {
-      $scope.selected = $scope.items.slice(0);
-    }
-  };
-// });
+};
+
+  self.build = function () {
+    console.log('clicked');
+    $http({
+      method: "POST",
+      url: "/project",
+      data: {
+        projectName: self.projectName,
+        teamCount : self.teamCount
+      }
+
+    }).then(function(res){
+      console.log("SUCCESS");
+    })
+  }
 
   }]);
