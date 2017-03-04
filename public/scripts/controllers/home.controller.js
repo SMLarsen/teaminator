@@ -2,9 +2,14 @@
 angular.module('app').controller('HomeController', ['$http', 'CohortFactory', function($http, CohortFactory) {
   const self = this;
 
-  self.CohortFactory = CohortFactory;
+  var cohortFactory = CohortFactory;
+
   self.selectedCohort = '';
 
-  console.log('cohort factory data:', CohortFactory);
+  (function getCohorts(){
+  	CohortFactory.getCohorts().then(function(data){
+  		self.cohorts = data.data;
+  	});
+  })();
 
 }]);
