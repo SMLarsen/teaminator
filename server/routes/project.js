@@ -8,11 +8,13 @@ var pool = new pg.Pool(config.pg);
 router.post('/', function(req, res) {
   pool.connect()
     .then(function(client) {
+      console.log("name: ", req.body.projectName);
+      console.log("count: ", req.body.teamCount);
       client.query('INSERT INTO project (name, team_count) VALUES ($1, $2)', [req.body.projectName, req.body.teamCount])
         .then(function(err, result) {
         if(err) {
           client.release();
-          console.log("Error connecting to DB: ", err);
+          console.log("Error connecting toDB: ", err);
           res.sendStatus(500);
         } else {
           client.release();
