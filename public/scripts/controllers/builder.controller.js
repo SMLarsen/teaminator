@@ -4,10 +4,10 @@ angular.module('app').controller('BuilderController', ['$http', function($http, 
 
 
 
-  this.items = ['chris', 'andrew', 'joe'];
-  this.cohorts = ['sigma', 'tau'];
-
-  this.loadCohort = function() {
+  self.items = ['chris', 'andrew', 'joe'];
+  self.cohorts = [1,2,3,4];
+  self.projectName = "Phil";
+  self.loadCohort = function() {
 
 
   // Use timeout to simulate a 650ms request.
