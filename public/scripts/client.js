@@ -23,7 +23,7 @@ app.config(function ($routeProvider, $mdThemingProvider) {
       .when('/builder', {
         templateUrl: 'views/templates/builder.html',
         controller: 'BuilderController',
-        controllerAs: 'build'
+        controllerAs: 'builder'
       })
       .when('/teams', {
         templateUrl: 'views/templates/teams.html',

@@ -6,28 +6,27 @@
   <div layout="row" layout-wrap>
     <div flex="100" layout="column">
       <div>
-        <!--
-          In IE, we cannot apply flex directly to <fieldset>
-          @see https://github.com/philipwalton/flexbugs#9-some-html-elements-cant-be-flex-containers
-        -->
+
         <fieldset class="demo-fieldset" >
-          <legend class="demo-legend">Using &lt;md-checkbox&gt; with the 'indeterminate' attribute </legend>
-          <div layout="row" layout-wrap flex>
-          <div flex-xs flex="50">
-            <md-checkbox aria-label="Select All"
-                         ng-checked="isChecked()"
-                         md-indeterminate="isIndeterminate()"
-                         ng-click="toggleAll()">
-              <span ng-if="isChecked()">Un-</span>Select All
-            </md-checkbox>
-          </div>
-            <div class="demo-select-all-checkboxes" flex="100" ng-repeat="item in items">
-              <md-checkbox ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
-               {{ item }}
-              </md-checkbox>
+          <legend class="demo-legend">List of Students</legend>
+
+            <div  flex="100" ng-repeat="item in builder.items">
+
+              <md-checkbox> {{item}} </md-checkbox>
             </div>
           </div>
         </fieldset>
       </div>
     </div>
+</div>
+
+
+<div layout="column" layout-align="center center" style="padding:40px" ng-cloak>
+  <p>Select a cohort to randomize:</p>
+  <div layout="column" layout-align="center center">
+    <md-select placeholder="cohorts" ng-model="user" md-on-open="builder.loadCohorts()" style="min-width: 200px;">
+      <md-option ng-repeat="cohort in builder.cohorts">{{cohort}}</md-option>
+    </md-select>
+    <p class="md-caption">You picked the {{ cohort }} cohort</p>
+  </div>
 </div>
