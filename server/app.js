@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
-// const project = require('./routes/project');
+const project = require('./routes/project');
 // const cohort = require('./routes/cohort');
 const team = require('./routes/team');
 // const person = require('./routes/person');
@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 //Jason
 // app.use('/cohort', cohort);
 //Casey & Andrew
-// app.use('/project', project);
+app.use('/project', project);
 //Steve
 app.use('/team', team);
 //Jeff
