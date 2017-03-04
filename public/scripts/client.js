@@ -15,6 +15,26 @@ app.config(function ($routeProvider, $mdThemingProvider) {
         controller: 'HomeController',
         controllerAs: 'home'
       })
+      .when('/nav', {
+        templateUrl: 'views/templates/nav.html',
+        controller: 'NavController',
+        controllerAs: 'nav'
+      })
+      .when('/builder', {
+        templateUrl: 'views/templates/builder.html',
+        controller: 'BuilderController',
+        controllerAs: 'build'
+      })
+      .when('/teams', {
+        templateUrl: 'views/templates/teams.html',
+        controller: 'TeamController',
+        controllerAs: 'teams'
+      })
+      .when('/cohort', {
+        templateUrl: 'views/templates/cohort.html',
+        controller: 'CohortController',
+        controllerAs: 'cohort'
+      })
       .otherwise({
         redirectTo: 'home'
       });

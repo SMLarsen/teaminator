@@ -18,9 +18,13 @@ app.get('/', function(req, res){
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
+//Jason
 app.use('/cohort', cohort);
+//Casey & Andrew
 // app.use('/project', project);
+//Steve
 app.use('/team', team);
+//Jeff
 // app.use('/person', person);
 
 app.listen(portDecision, function(){
