@@ -9,6 +9,7 @@ var pool = new pg.Pool(config.pg);
 router.get("/", function(req, res) {
   pool.query('SELECT * FROM cohort')
     .then(function (result) {
+      console.log("cohorts: ", result.rows);
       res.send(result.rows);
     })
     .catch(function (err) {

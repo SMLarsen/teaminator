@@ -35,6 +35,11 @@ app.config(function ($routeProvider, $mdThemingProvider) {
         controller: 'ManagerController',
         controllerAs: 'manager'
       })
+      .when('/cohorts', {
+        templateUrl: '/views/templates/cohorts.html',
+        controller: 'CohortController',
+        controllerAs: 'cohorts'
+      })
       .otherwise({
         redirectTo: 'home'
       });

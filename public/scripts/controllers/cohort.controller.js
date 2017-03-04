@@ -1,6 +1,7 @@
 /*jshint esversion: 6 */
 angular.module('app')
   .controller('CohortController', ['$http', function($http){
+    console.log("Cohort controller running");
     var self = this;
 
     // self.cohort = "Sigma";
