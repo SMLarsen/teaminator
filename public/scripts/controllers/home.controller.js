@@ -1,8 +1,15 @@
 /*jshint esversion: 6 */
-angular.module('app').controller('HomeController', ['$http', function($http) {
+angular.module('app').controller('HomeController', ['$http', 'CohortFactory', function($http, CohortFactory) {
   const self = this;
 
-  self.cohorts = ['Pi', 'Rho', 'Sigma', 'Tau', 'Chi'];
+  var cohortFactory = CohortFactory;
+
   self.selectedCohort = '';
+
+  (function getCohorts(){
+  	CohortFactory.getCohorts().then(function(data){
+  		self.cohorts = data.data;
+  	});
+  })();
 
 }]);

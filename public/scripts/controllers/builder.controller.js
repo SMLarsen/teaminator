@@ -1,9 +1,9 @@
-angular.module('app').controller('BuilderController', ['$http', function($http, $timeout){
+angular.module('app').controller('BuilderController', ['$http', '$location', 'CohortFactory', function($http, $location, CohortFactory){
     console.log('builder controller running');
     const self = this;
 
 
-
+  self.teamCount;
   self.items = ['chris', 'andrew', 'joe'];
   self.cohorts = [1,2,3,4];
   self.projectName = "Phil";
@@ -14,7 +14,25 @@ angular.module('app').controller('BuilderController', ['$http', function($http, 
     return this.cohorts;
 
 
+
 };
 
+  self.build = function () {
+    let cohortId = CohortFactory.cohortId;
+    console.log('clicked');
+    $http({
+      method: "POST",
+      url: "/project",
+      data: {
+        projectName: self.projectName,
+        teamCount : self.teamCount,
+        cohortId: cohortId
+      }
+    })
+    .then(function(res) {
+      console.log("SUCCESS");
+      $location.path('/teams');
+    });
+  };
 
-  }]);
+}]);//End controller
