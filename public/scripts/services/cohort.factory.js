@@ -25,5 +25,6 @@ app.factory('CohortFactory', ['$http', function($http) {
   return {
     cohorts: cohorts
   };
+
 }]);
 

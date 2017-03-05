@@ -5,6 +5,4 @@ angular.module('app').controller('HomeController', ['$http', 'CohortFactory', fu
   self.cohorts = CohortFactory.cohorts;
   self.selectedCohort = '';
 
-  console.log('cohort factory data:', CohortFactory);
-
 }]);
