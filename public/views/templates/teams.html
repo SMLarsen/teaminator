@@ -1,1 +1,17 @@
-<h1>Hello World</h1>
+<h1>Teams</h1>
+
+<md-content layout-padding>
+    <div>
+        <form name="teamForm">
+
+            <div layout-gt-xs="row">
+                <md-input-container class="md-block" flex-gt-xs>
+                    <label>Project ID</label>
+                    <input ng-model="projectID">
+                </md-input-container>
+            </div>
+        </form>
+    </div>
+</md-content>
+<md-button ng-click="teams.getTeams(projectID)" class="md-raised md-primary">Get Teams</md-button>
+{{teams.data.teamsArray}}
