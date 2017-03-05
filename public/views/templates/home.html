@@ -5,8 +5,10 @@
     <md-input-container>
       <label>Select Cohort…</label>
       <md-select ng-model="home.selectedCohort">
-        <md-option ng-repeat="cohort in home.cohorts" value="{{cohort.name}}">
-        	{{cohort.name}}
+        <md-option 
+          ng-repeat="cohort in home.cohorts.list" 
+          ng-value="cohort.name">
+          {{cohort.name}}
         </md-option>
       </md-select>
     </md-input-container>
