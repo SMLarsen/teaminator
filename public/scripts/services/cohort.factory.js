@@ -1,4 +1,6 @@
-app.factory('CohortFactory', ['$http', function($http) {
+app.factory('CohortFactory', ['$http', 'NotifyFactory', cohortFactory]);
+
+function cohortFactory($http, NotifyFactory) {
   
   var cohorts = {
     list: null
@@ -17,14 +19,27 @@ app.factory('CohortFactory', ['$http', function($http) {
     .catch(handleError);
   }
 
+  function add(name) {
+    return $http({
+      method: 'POST',
+      url: '/cohort',
+      data: {name: name}
+    })
+    .then(function (response) {
+      getAll();
+      NotifyFactory.info(response)
+    })
+    .catch(handleError);
+  }
+
   function handleError(err) {
-    var message = [err.config.method, err.config.url, "error:"].join(" ")
-    console.log(message, err);
+    NotifyFactory.warn(err);
+    console.log(err.config.method, "error:", err);
   }
 
   return {
-    cohorts: cohorts
+    cohorts: cohorts,
+    add: add
   };
 
-}]);
-
+}

@@ -15,6 +15,17 @@
 
     <md-button class="md-primary md-raised" ng-href="#!manager">Manage Cohorts</md-button>
 
+
+    <form ng-submit="home.add(home.newName)">
+    <md-input-container>
+      <input type="text" ng-model="home.newName" required />
+    </md-input-container>
+    <md-button 
+      type="submit"
+      class="md-primary md-raised"> 
+      Add Cohort
+    </md-button>
+    </form>
   </md-card>
 
 </div>
