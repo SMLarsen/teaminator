@@ -7,6 +7,8 @@ angular.module('app')
     // self.teams = {};
     self.newMember = {};
 
+
+   // temp stuff, replace with new cohort created and stored in home factory
     function getCohorts(){
       var promise = $http({
         method: 'GET',
@@ -14,6 +16,7 @@ angular.module('app')
       }).then(function(response){
         self.cohorts = response.data
         console.log(self.cohorts[0].name);
+        self.cohort = self.cohorts[0].name
       });
       return promise;
     }
