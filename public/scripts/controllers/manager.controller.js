@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 angular.module('app')
-  .controller('CohortController', ['$http', function($http){
+  .controller('ManagerController', ['$http', function($http){
     var self = this;
 
     // self.cohort = "Sigma";
