@@ -1,6 +1,6 @@
 app.factory('CohortFactory', ['$http', function($http) {
 
-  var cohorts = {
+  var cohort = {
     list: null,
     selectedCohort: null
   }

@@ -10,7 +10,7 @@ angular.module('app').controller('BuilderController', ['$http', '$location', 'Co
   self.teamCount;
   self.students = ['chris', 'andrew', 'joe'];
   self.cohorts = [1,2,3,4];
-  self.projectName = "Phil";
+  self.projectName = '';
   self.loadCohort = function() {
 
 

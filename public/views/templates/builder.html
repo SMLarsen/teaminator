@@ -15,12 +15,9 @@
   <div layout="row" layout-wrap layout-align="center center">
     <div flex="50" layout="column">
       <div>
-
         <fieldset class="demo-fieldset" >
           <legend class="demo-legend">List of Students</legend>
-
             <div  flex="100" ng-repeat="student in builder.students">
-
               <md-checkbox>{{student}}</md-checkbox>
             </div>
           </div>
@@ -29,7 +26,6 @@
     </div>
 </div>
 <!-- md-on-open="builder.loadCohorts()" -->
-
 <div layout="column" layout-align="center center" style="padding:40px" ng-cloak>
   <p># of students per group:</p>
   <div layout="column" layout-align="center center">
@@ -42,5 +38,6 @@
 </div>
 
 <div layout="row" layout-align="center center">
-  <md-button ng-click="builder.build()" class="md-raised md-primary">Build Your Group</md-button>
+  <md-button ng-click="builder.build()" class="md-raised md-primary">Build Your Groups</md-button>
+  <md-button ng-click="builder.edit()" class="md-raised md-primary">Edit Cohort</md-button>
 </div>
