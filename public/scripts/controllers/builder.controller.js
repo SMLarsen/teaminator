@@ -8,9 +8,9 @@ angular.module('app').controller('BuilderController', ['$http', '$location', 'Co
   CohortFactory.cohort.selectedCohort = $route.current.params.selectedCohort;
   self.selectedCohort = CohortFactory.cohort.selectedCohort;
   self.teamCount;
-  self.items = ['chris', 'andrew', 'joe'];
+  self.students = ['chris', 'andrew', 'joe'];
   self.cohorts = [1,2,3,4];
-  self.projectName = "Phil";
+  self.projectName = '';
   self.loadCohort = function() {
 
 

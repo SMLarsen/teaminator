@@ -1,9 +1,10 @@
 app.factory('CohortFactory', ['$http', function($http) {
-  
-  var cohorts = {
-    list: null
+
+  var cohort = {
+    list: null,
+    selectedCohort: null
   }
-  
+
   getAll();
 
   function getAll() {
@@ -12,7 +13,7 @@ app.factory('CohortFactory', ['$http', function($http) {
       url: '/cohort'
     })
     .then(function(result) {
-      cohorts.list = result.data;
+      cohort.list = result.data;
     })
     .catch(handleError);
   }
@@ -23,8 +24,7 @@ app.factory('CohortFactory', ['$http', function($http) {
   }
 
   return {
-    cohorts: cohorts
+    cohort: cohort
   };
 
 }]);
-
