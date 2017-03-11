@@ -20,7 +20,7 @@ app.config(function ($routeProvider, $mdThemingProvider) {
         controller: 'NavController',
         controllerAs: 'nav'
       })
-      .when('/builder', {
+      .when('/builder/:selectedCohort', {
         templateUrl: 'views/templates/builder.html',
         controller: 'BuilderController',
         controllerAs: 'builder'

@@ -1,26 +1,30 @@
 app.factory('CohortFactory', ['$http', function($http) {
 
   var cohorts = {
-    array: ['Pi', 'Rho', 'Sigma', 'Tau', 'Chi'],
-    selectedCohort: ''
+    list: null,
+    selectedCohort: null
   }
-  // getAll();
-  // function getAll() {
-  //   return $http({
-  //     method: 'GET',
-  //     url: '/cohorts'
-  //   })
-  //   .then(function(data) {
-  //     cohorts = data;
-  //   })
-  //   .catch(handleError);
-  // }
+
+  getAll();
+
+  function getAll() {
+    return $http({
+      method: 'GET',
+      url: '/cohort'
+    })
+    .then(function(result) {
+      cohort.list = result.data;
+    })
+    .catch(handleError);
+  }
 
   function handleError(err) {
-    console.log('err', err);
+    var message = [err.config.method, err.config.url, "error:"].join(" ")
+    console.log(message, err);
   }
+
   return {
-    // getAll: getAll,
-    cohorts: cohorts
+    cohort: cohort
   };
+
 }]);

@@ -6,10 +6,29 @@ var config = require('../modules/pg-config');
 
 var pool = new pg.Pool(config.pg);
 
-router.get("/", function(req, res) {
+
+router.get("/:id", function(req, res) {
+  var projectID = req.params.id;
     pool.connect()
         .then(function(client) {
-            client.query('SELECT * FROM team', function(err, result) {
+            client.query('SELECT * FROM team WHERE team.project_id = $1', [projectID], function(err, result) {
+                if (err) {
+                    client.release();
+                    console.log('Error getting team data', err);
+                    res.sendStatus(500);
+                } else {
+                    client.release();
+                    res.send(result.rows);
+                }
+            });
+        });
+});
+
+router.get("/members/:id", function(req, res) {
+  var projectID = req.params.id;
+    pool.connect()
+        .then(function(client) {
+            client.query('SELECT project_id, team_size, team.name AS team_name, team_member.id AS member_id, team_id, person_id, cohort_id, person.name AS person_name FROM team JOIN team_member ON team.id = team_member.team_id JOIN person ON team_member.person_id = person.id WHERE team.project_id = $1 ORDER BY team_id', [projectID], function(err, result) {
                 if (err) {
                     client.release();
                     console.log('Error getting team data', err);
