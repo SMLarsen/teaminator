@@ -5,7 +5,7 @@ angular.module('app').controller('HomeController', ['$http', 'CohortFactory', '$
   self.cohort = CohortFactory.cohort;
 
   self.next = function() {
-    $location.path('/builder/' + CohortFactory.cohort.selectedCohort);
+    $location.path('/builder/' + CohortFactory.cohort.selectedCohort.id);
   }
 
 }]);

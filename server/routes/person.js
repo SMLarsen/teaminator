@@ -22,6 +22,28 @@ router.get("/", function(req, res) {
         });
 });
 
+router.get('/:id', function(req, res) {
+  console.log("Get with ID route hit");
+  pool.connect()
+    .then(function(client) {
+      client.query('SELECT * FROM person WHERE cohort_id = $1', [req.params.id],
+      function(err, result) {
+        if(err) {
+          client.release();
+          console.log("Error selecting people from DB: ", err);
+          res.sendStatus(500);
+        } else {
+          client.release();
+          res.send(result.rows);
+        }
+      })
+    })
+    .catch(function(err) {
+      console.log("Error connecting to DB: ", err);
+      res.sendStatus(500);
+    });
+});// End route
+
 router.post("/", function(req, res) {
     pool.connect()
         .then(function(client) {

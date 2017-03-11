@@ -1,6 +1,6 @@
 <md-card>
   <md-card-content>
-    <span>Cohort: {{builder.selectedCohort}}</span>
+    <span>Cohort: {{builder.cohort.selectedCohort.name}}</span>
   </md-card-content>
 </md-card>
 
@@ -17,8 +17,8 @@
       <div>
         <fieldset class="demo-fieldset" >
           <legend class="demo-legend">List of Students</legend>
-            <div  flex="100" ng-repeat="student in builder.students">
-              <md-checkbox>{{student}}</md-checkbox>
+            <div  flex="100" ng-repeat="student in builder.cohort.people">
+              <md-checkbox ng-init="student.checked = true" ng-checked="student.checked" ng-click="builder.toggleCheck(student)">{{student.name}}</md-checkbox>
             </div>
           </div>
         </fieldset>
@@ -39,5 +39,5 @@
 
 <div layout="row" layout-align="center center">
   <md-button ng-click="builder.build()" class="md-raised md-primary">Build Your Groups</md-button>
-  <md-button ng-click="builder.edit()" class="md-raised md-primary">Edit Cohort</md-button>
+  <a href="#!/manager"><md-button class="md-raised md-primary">Edit Cohort</md-button></a>
 </div>
