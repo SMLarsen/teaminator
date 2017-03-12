@@ -38,10 +38,46 @@ app.factory('CohortFactory', ['$http', function($http) {
     })
   }
 
+  function addPerson(studentName) {
+    return $http({
+      method: 'POST',
+      url: '/person',
+      data: {
+        cohortId: cohort.selectedCohort.id,
+        name: studentName
+      }
+    })
+    .then(function(response) {
+      console.log("Successs adding student!");
+      getPeople();
+    })
+    .catch(function(err) {
+      // NotifiyFactory.warn(err);
+      console.log("Error adding student: ", err);
+    });
+  }
+
+  function deletePerson(student) {
+    return $http({
+      method: 'DELETE',
+      url: '/person/' + student.id    
+    })
+    .then(function(response) {
+      console.log("Successs deleting student!");
+      getPeople();
+    })
+    .catch(function(err) {
+      // NotifiyFactory.warn(err);
+      console.log("Error deleting student: ", err);
+    });
+  }
+
   return {
     cohort: cohort,
     getAll: getAll,
-    getPeople: getPeople
+    getPeople: getPeople,
+    addPerson: addPerson,
+    deletePerson: deletePerson
   };
 
 }]);

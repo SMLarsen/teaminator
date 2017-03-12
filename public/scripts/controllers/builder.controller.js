@@ -8,7 +8,6 @@ angular.module('app').controller('BuilderController', ['$http', '$location', 'Co
   self.cohort = CohortFactory.cohort;
   CohortFactory.getPeople();
   self.teamCount;
-  self.cohorts = [1,2,3,4];
   self.projectName = '';
   self.loadCohort = function() {
 
