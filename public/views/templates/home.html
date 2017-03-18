@@ -15,8 +15,8 @@
     </md-input-container>
 
     <md-card-actions>
-      <md-button class="md-primary md-raised" ng-click="home.next()">Next</md-button>
-      <md-button class="md-primary md-raised" ng-click="home.manager()">Manage Cohorts</md-button>
+      <md-button ng-disabled="!home.cohort.selectedCohort" class="md-primary md-raised" ng-click="home.next()">Next</md-button>
+      <md-button ng-disabled="!home.cohort.selectedCohort" class="md-primary md-raised" ng-click="home.manager()">Manage Cohorts</md-button>
     </md-card-actions>
 
   </md-card>
