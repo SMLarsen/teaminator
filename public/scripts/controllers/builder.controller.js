@@ -10,6 +10,7 @@ angular.module('app').controller('BuilderController', ['$http', '$location', 'Co
   self.team = TeamFactory.data;
   CohortFactory.getPeople();
   self.team.newProject = {};
+  self.projectBuilt = false;
 
   self.loadCohort = function() {
     return this.cohorts;
@@ -19,9 +20,14 @@ angular.module('app').controller('BuilderController', ['$http', '$location', 'Co
     student.checked = !student.checked;
   };
 
-  self.build = function () {
+  self.addProject = function () {
+    self.projectBuilt = true;
     self.team.newProject.cohortId = self.cohort.selectedCohort.id;
     TeamFactory.addProject();
+  };
+
+  self.build = function() {
+      $location.path('/teams');
   };
 
   // self.build = function () {

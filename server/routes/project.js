@@ -8,8 +8,7 @@ var pool = new pg.Pool(config.pg);
 // get all projects
 router.get("/:id", function(req, res, next) {
   var cohortID = req.params.id;
-  console.log('cohortID:', req.params);
-    pool.query('SELECT * FROM project WHERE id = $1', [cohortID], function(err, result) {
+    pool.query('SELECT * FROM project WHERE cohort_id = $1', [cohortID], function(err, result) {
         if (err) {
             console.log('Error getting projects', err);
             res.sendStatus(500);
@@ -22,8 +21,6 @@ router.get("/:id", function(req, res, next) {
 router.post('/', function(req, res) {
     pool.connect()
         .then(function(client) {
-            console.log("name: ", req.body.projectName);
-            console.log("count: ", req.body.teamCount);
             client.query('INSERT INTO project (name, team_count, cohort_id) VALUES ($1, $2, $3)', [req.body.projectName, req.body.teamCount, req.body.cohortId])
                 .then(function(result) {
                     client.release();

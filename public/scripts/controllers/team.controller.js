@@ -17,9 +17,7 @@ app.controller('TeamController', function(TeamFactory, CohortFactory) {
 
     self.getProjects(self.cohort.selectedCohort.id);
 
-
-
-    self.getTeams = function(projectID) {
+    self.getTeams = function() {
         teamFactory.getTeams(projectID)
             .then((response) => self.data = teamFactory.data)
             .catch((err) => console.log('Error getting teams', err));

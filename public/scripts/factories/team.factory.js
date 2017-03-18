@@ -93,7 +93,7 @@ app.factory("TeamFactory", ["$http", function($http) {
                 data: data.newProject
             })
             .then((response) => {
-                data.newProject = {};
+                // data.newProject = {};
                 return;
             })
             .catch((err) => console.log('Unable to add Project', err));

@@ -24,10 +24,11 @@
         </div>
 
         <div layout="row" layout-align="center center">
-            <md-button ng-click="builder.build()" class="md-raised md-primary">Build Your Groups</md-button>
-            <a href="#!/manager">
+            <md-button ng-show="!builder.projectBuilt" ng-click="builder.addProject()" class="md-raised md-primary">Add Project</md-button>
+            <md-button ng-show="builder.projectBuilt" ng-click="builder.build()" class="md-raised md-primary">Build Your Teams</md-button>
+            <!-- <a href="#!/manager">
                 <md-button class="md-raised md-primary">Edit Cohort</md-button>
-            </a>
+            </a> -->
         </div>
     </div>
 
@@ -37,6 +38,7 @@
                 <div>
                     <fieldset class="demo-fieldset">
                         <legend class="demo-legend">List of Students</legend>
+                        <p><em>Uncheck anyone not participating in this project</em></p>
                         <div ng-repeat="student in builder.cohort.people">
                             <md-checkbox ng-init="student.checked = true" ng-checked="student.checked" ng-click="builder.toggleCheck(student)">{{student.name}}</md-checkbox>
                         </div>
