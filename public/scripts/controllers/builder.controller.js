@@ -18,7 +18,7 @@ angular.module('app').controller('BuilderController', ['$http', '$location', 'Co
 };
 
   self.build = function () {
-    let cohortId = CohortFactory.cohortId;
+    var cohortId = CohortFactory.cohortId;
     console.log('clicked');
     $http({
       method: "POST",
