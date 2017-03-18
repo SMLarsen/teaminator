@@ -1,16 +1,16 @@
 /*jshint esversion: 6 */
 require('dotenv').config();
-const express = require('express');
-const app = express();
-const path = require('path');
-const bodyParser = require('body-parser');
-const project = require('./routes/project');
-const cohort = require('./routes/cohort');
-const team = require('./routes/team');
-const member = require('./routes/member');
-const person = require('./routes/person');
+var express = require('express');
+var app = express();
+var path = require('path');
+var bodyParser = require('body-parser');
+var project = require('./routes/project');
+var cohort = require('./routes/cohort');
+var team = require('./routes/team');
+var member = require('./routes/member');
+var person = require('./routes/person');
 
-const portDecision = process.env.PORT || 5000;
+var portDecision = process.env.PORT || 5000;
 
 app.get('/', function(req, res){
   res.sendFile(path.resolve('./public/views/index.html'));
