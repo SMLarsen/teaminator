@@ -4,13 +4,18 @@
     <div>
         <form name="teamForm">
 
-            <div layout-gt-xs="row">
-                <md-input-container class="md-block" flex-gt-xs>
-                    <label>Project ID</label>
-                    <input ng-model="projectID">
-                </md-input-container>
-            </div>
+          <md-input-container>
+            <label>Select Cohort…</label>
+
+            <md-select ng-model="teams.selectedProject">
+              <md-option
+                ng-repeat="project in teams.data.projectsArray"
+                ng-value="cohort">
+                {{project.name}}
+              </md-option>
+            </md-select>
+          </md-input-container>
         </form>
     </div>
+    {{teams.data.projectsArray}}
 </md-content>
-{{teams.data.teamsArray}}

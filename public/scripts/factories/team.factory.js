@@ -3,6 +3,7 @@ app.factory("TeamFactory", ["$http", function($http) {
     console.log('TeamFactory started');
 
     let data = {
+        projectsArray: [],
         teamsArray: [],
         focusTeam: {},
         newProject: {}
@@ -69,6 +70,20 @@ app.factory("TeamFactory", ["$http", function($http) {
             .catch((err) => console.log('Unable to add Team', err));
     } // End addTeam
 
+    // Function to GET Projects
+    function getProjects(cohortID) {
+        return $http({
+                method: 'GET',
+                url: '/project/' + cohortID
+            })
+            .then((response) => {
+                data.projectsArray = response.data;
+                console.log('data', data.projectsArray);
+                return;
+            })
+            .catch((err) => console.log('Unable to retrieve Projects', err));
+    }
+
     // Function to add Project
     function addProject() {
         console.log('addProject:', data.newProject);
@@ -91,6 +106,9 @@ app.factory("TeamFactory", ["$http", function($http) {
         },
         addTeam: function() {
             return addTeam();
+        },
+        getProjects: function(cohortID) {
+            return getProjects(cohortID);
         },
         addProject: function() {
             return addProject();
