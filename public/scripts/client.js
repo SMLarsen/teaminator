@@ -20,7 +20,7 @@ app.config(function ($routeProvider, $mdThemingProvider) {
         controller: 'NavController',
         controllerAs: 'nav'
       })
-      .when('/builder', {
+      .when('/builder/:cohortId', {
         templateUrl: 'views/templates/builder.html',
         controller: 'BuilderController',
         controllerAs: 'builder'
@@ -34,6 +34,11 @@ app.config(function ($routeProvider, $mdThemingProvider) {
         templateUrl: 'views/templates/manager.html',
         controller: 'ManagerController',
         controllerAs: 'manager'
+      })
+      .when('/cohorts', {
+        templateUrl: '/views/templates/cohorts.html',
+        controller: 'CohortController',
+        controllerAs: 'cohorts'
       })
       .otherwise({
         redirectTo: 'home'

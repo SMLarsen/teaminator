@@ -1,12 +1,14 @@
-angular.module('app').controller('BuilderController', ['$http', '$location', 'CohortFactory', function($http, $location, CohortFactory){
+angular.module('app').controller('BuilderController', ['$http', '$location', 'CohortFactory', '$route', function($http, $location, CohortFactory, $route){
+
     console.log('builder controller running');
     const self = this;
 
+  // TODO: ensure cohort exists
 
+  self.cohort = CohortFactory.cohort;
+  CohortFactory.getPeople();
   self.teamCount;
-  self.items = ['chris', 'andrew', 'joe'];
-  self.cohorts = [1,2,3,4];
-  self.projectName = "Phil";
+  self.projectName = '';
   self.loadCohort = function() {
 
 
@@ -15,7 +17,11 @@ angular.module('app').controller('BuilderController', ['$http', '$location', 'Co
 
 
 
-};
+  };
+
+  self.toggleCheck = function(student) {
+    student.checked = !student.checked;
+  }
 
   self.build = function () {
     var cohortId = CohortFactory.cohortId;

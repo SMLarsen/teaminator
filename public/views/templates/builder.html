@@ -1,3 +1,9 @@
+<md-card>
+  <md-card-content>
+    <span>Cohort: {{builder.cohort.selectedCohort.name}}</span>
+  </md-card-content>
+</md-card>
+
 <div class="md-medium-tall" layout="row" layout-align="center center">
      <md-input-container  flex='50'>
        <label>Project Name</label>
@@ -9,13 +15,10 @@
   <div layout="row" layout-wrap layout-align="center center">
     <div flex="50" layout="column">
       <div>
-
         <fieldset class="demo-fieldset" >
           <legend class="demo-legend">List of Students</legend>
-
-            <div  flex="100" ng-repeat="item in builder.items">
-
-              <md-checkbox> {{item}} </md-checkbox>
+            <div  flex="100" ng-repeat="student in builder.cohort.people">
+              <md-checkbox ng-init="student.checked = true" ng-checked="student.checked" ng-click="builder.toggleCheck(student)">{{student.name}}</md-checkbox>
             </div>
           </div>
         </fieldset>
@@ -23,18 +26,18 @@
     </div>
 </div>
 <!-- md-on-open="builder.loadCohorts()" -->
-
 <div layout="column" layout-align="center center" style="padding:40px" ng-cloak>
   <p># of students per group:</p>
   <div layout="column" layout-align="center center">
     <div flex="50">
     <md-select ng-model="builder.teamCount">
-      <md-option ng-repeat="number in [1,2,3,4,5,6,7,8,9]" ng-value="{{number}}">{{number}}</md-option>
+      <md-option ng-repeat="number in [2,3,4,5,6,7,8,9]" ng-value="{{number}}">{{number}}</md-option>
     </md-select>
   </div>
 </div>
 </div>
 
 <div layout="row" layout-align="center center">
-  <md-button ng-click="builder.build()" class="md-raised md-primary">Build Your Group</md-button>
+  <md-button ng-click="builder.build()" class="md-raised md-primary">Build Your Groups</md-button>
+  <a href="#!/manager"><md-button class="md-raised md-primary">Edit Cohort</md-button></a>
 </div>

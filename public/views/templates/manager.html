@@ -1,6 +1,6 @@
 <md-toolbar class="cohort-manager-toolbar" layout="row" class="md-hue-3">
   <div class="md-toolbar-tools">
-    <span>Cohort Manager for {{manager.cohort.name}}</span>
+    <span>Cohort Manager for {{manager.cohort.selectedCohort.name}}</span>
   </div>
 </md-toolbar>
 
@@ -10,13 +10,12 @@
     <md-card-title>
       <md-card-title-text>
         <span class="md-headline">Add Member</span>
-        <span class="md-subhead">Do it I dare you.</span>
       </md-card-title-text>
     </md-card-title>
     <md-card-actions layout="row" layout-align="end center">
       <md-input-container>
         <input type="text" min="1" id="member" name="cohortMember" ng-model="newMember" placeholder="Name">
-        <button ng-click="cohort.submitMember(newMember)">Submit</button>
+        <md-button class="md-primary md-raised" ng-click="manager.addPerson(newMember)">Submit</md-button>
       </md-input-container>
     </md-card-actions>
   </md-card>
@@ -25,13 +24,13 @@
     <md-card-title>
       <md-card-title-text>
         <span class="md-headline">Cohort Members</span>
-        <span class="md-subhead">Do it I dare you.</span>
       </md-card-title-text>
     </md-card-title>
     <md-list>
-      <md-list-item>
-        <!-- NG REPEAT TEAM MEMBERS -->
-        <md-list-item>
+      <md-list-item ng-repeat="student in manager.cohort.people">
+        <md-button class="md-raised md-warn md-hue-2" ng-click="manager.deletePerson(student)">Delete</md-button>
+        <span>{{student.name}}</span>
+      </md-list-item>
     </md-list>
   </md-card>
 
