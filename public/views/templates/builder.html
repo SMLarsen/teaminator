@@ -9,14 +9,14 @@
         <div class="md-medium-tall" layout="row" layout-align="center center">
             <md-input-container >
                 <label>Project Name</label>
-                <input ng-model="builder.projectName" />
+                <input ng-model="builder.team.newProject.projectName" />
             </md-input-container>
         </div>
         <div layout="column" layout-align="center center" style="padding:40px" ng-cloak>
             <p># of teams needed:</p>
             <div layout="column" layout-align="center center">
                 <div>
-                    <md-select ng-model="builder.teamCount">
+                    <md-select ng-model="builder.team.newProject.teamCount">
                         <md-option ng-repeat="number in [2,3,4,5,6,7,8,9]" ng-value="{{number}}">{{number}}</md-option>
                     </md-select>
                 </div>

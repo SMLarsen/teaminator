@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-angular.module('app').controller('BuilderController', ['$http', '$location', 'CohortFactory', '$route', function($http, $location, CohortFactory, $route){
+angular.module('app').controller('BuilderController', ['$http', '$location', 'CohortFactory', 'TeamFactory', '$route', function($http, $location, CohortFactory, TeamFactory, $route){
 
     console.log('builder controller running');
     let self = this;
@@ -7,9 +7,10 @@ angular.module('app').controller('BuilderController', ['$http', '$location', 'Co
   // TODO: ensure cohort exists
 
   self.cohort = CohortFactory.cohort;
+  self.team = TeamFactory.data;
   CohortFactory.getPeople();
-  self.teamCount = 0;
-  self.projectName = '';
+  self.team.newProject = {};
+
   self.loadCohort = function() {
     return this.cohorts;
   };
@@ -19,21 +20,26 @@ angular.module('app').controller('BuilderController', ['$http', '$location', 'Co
   };
 
   self.build = function () {
-    let cohortId = CohortFactory.cohortId;
-    console.log('clicked');
-    $http({
-      method: "POST",
-      url: "/project",
-      data: {
-        projectName: self.projectName,
-        teamCount : self.teamCount,
-        cohortId: cohortId
-      }
-    })
-    .then(function(res) {
-      console.log("SUCCESS");
-      $location.path('/teams');
-    });
+    self.team.newProject.cohortId = self.cohort.selectedCohort.id;
+    TeamFactory.addProject();
   };
+
+  // self.build = function () {
+  //   let cohortId = CohortFactory.cohortId;
+  //   console.log('clicked');
+  //   $http({
+  //     method: "POST",
+  //     url: "/project",
+  //     data: {
+  //       projectName: self.projectName,
+  //       teamCount : self.teamCount,
+  //       cohortId: cohortId
+  //     }
+  //   })
+  //   .then(function(res) {
+  //     console.log("SUCCESS");
+  //     $location.path('/teams');
+  //   });
+  // };
 
 }]);//End controller

@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 angular.module('app')
-    .controller('ManagerController', ['$http', 'CohortFactory', '$mdDialog', function($http, CohortFactory, $mdDialog) {
+    .controller('ManagerController', ['CohortFactory', '$mdDialog', function(CohortFactory, $mdDialog) {
         var self = this;
 
         self.cohort = CohortFactory.cohort;

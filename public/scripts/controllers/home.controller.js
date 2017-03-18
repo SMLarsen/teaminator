@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-angular.module('app').controller('HomeController', ['$http', 'CohortFactory', '$location', function($http, CohortFactory, $location) {
+angular.module('app').controller('HomeController', ['CohortFactory', '$location', function(CohortFactory, $location) {
   const self = this;
 
   self.cohort = CohortFactory.cohort;

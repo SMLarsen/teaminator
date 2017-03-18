@@ -4,7 +4,8 @@ app.factory("TeamFactory", ["$http", function($http) {
 
     let data = {
         teamsArray: [],
-        focusTeam: {}
+        focusTeam: {},
+        newProject: {}
     };
 
     // Function to GET Teams
@@ -68,6 +69,21 @@ app.factory("TeamFactory", ["$http", function($http) {
             .catch((err) => console.log('Unable to add Team', err));
     } // End addTeam
 
+    // Function to add Project
+    function addProject() {
+        console.log('addProject:', data.newProject);
+        return $http({
+                method: 'POST',
+                url: '/project',
+                data: data.newProject
+            })
+            .then((response) => {
+                data.newProject = {};
+                return;
+            })
+            .catch((err) => console.log('Unable to add Project', err));
+    } // End addProject
+
     const publicApi = {
         data: data,
         getTeams: function(projectID) {
@@ -75,6 +91,9 @@ app.factory("TeamFactory", ["$http", function($http) {
         },
         addTeam: function() {
             return addTeam();
+        },
+        addProject: function() {
+            return addProject();
         }
     };
 

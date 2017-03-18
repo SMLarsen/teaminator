@@ -10,7 +10,7 @@ router.post('/', function(req, res) {
     .then(function(client) {
       console.log("name: ", req.body.projectName);
       console.log("count: ", req.body.teamCount);
-      client.query('INSERT INTO project (name, team_count) VALUES ($1, $2)', [req.body.projectName, req.body.teamCount])
+      client.query('INSERT INTO project (name, team_count, cohort_id) VALUES ($1, $2, $3)', [req.body.projectName, req.body.teamCount, req.body.cohortId])
         .then(function(result) {
           client.release();
           console.log("Success");
@@ -20,12 +20,12 @@ router.post('/', function(req, res) {
           client.release();
           console.log("Error adding to DB: ", err);
           res.sendStatus(500);
-        })
+        });
     })
     .catch(function(err) {
       console.log("Error connecting to DB: ", err);
       res.sendStatus(500);
-    })
+    });
 });//End route
 //
 // router.get('/all', function(req, res) {
