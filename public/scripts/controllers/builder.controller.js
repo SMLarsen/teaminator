@@ -1,27 +1,22 @@
+/*jshint esversion: 6 */
 angular.module('app').controller('BuilderController', ['$http', '$location', 'CohortFactory', '$route', function($http, $location, CohortFactory, $route){
 
     console.log('builder controller running');
-    const self = this;
+    let self = this;
 
   // TODO: ensure cohort exists
 
   self.cohort = CohortFactory.cohort;
   CohortFactory.getPeople();
-  self.teamCount;
+  self.teamCount = 0;
   self.projectName = '';
   self.loadCohort = function() {
-
-
-  // Use timeout to simulate a 650ms request.
     return this.cohorts;
-
-
-
   };
 
   self.toggleCheck = function(student) {
     student.checked = !student.checked;
-  }
+  };
 
   self.build = function () {
     let cohortId = CohortFactory.cohortId;

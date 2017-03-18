@@ -1,10 +1,11 @@
+/*jshint esversion: 6 */
 app.factory('CohortFactory', ['$http', function($http) {
 
   var cohort = {
     list: null,
     selectedCohort: null,
     people: []
-  }
+  };
 
   getAll();
 
@@ -20,7 +21,7 @@ app.factory('CohortFactory', ['$http', function($http) {
   }
 
   function handleError(err) {
-    var message = [err.config.method, err.config.url, "error:"].join(" ")
+    var message = [err.config.method, err.config.url, "error:"].join(" ");
     console.log(message, err);
   }
 
@@ -35,7 +36,7 @@ app.factory('CohortFactory', ['$http', function($http) {
     })
     .catch(function(err) {
       console.log("GET people error: ", err);
-    })
+    });
   }
 
   function addPerson(studentName) {
@@ -60,7 +61,7 @@ app.factory('CohortFactory', ['$http', function($http) {
   function deletePerson(student) {
     return $http({
       method: 'DELETE',
-      url: '/person/' + student.id    
+      url: '/person/' + student.id
     })
     .then(function(response) {
       console.log("Successs deleting student!");
