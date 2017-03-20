@@ -6,3 +6,7 @@
 .cohort-manager-toolbar {
 	margin-top: 10px;
 }
+
+.breadcrumb:disabled {
+	color: red;
+}

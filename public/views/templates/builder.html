@@ -1,53 +1,44 @@
-<md-card>
-    <md-card-content>
-        <span>Cohort: {{builder.cohort.selectedCohort.name}}</span>
-    </md-card-content>
-</md-card>
-
-<div class="md-padding demo" layout="row">
-    <div layout="column" flex="60">
-        <div class="md-medium-tall" layout="row" layout-align="center center">
-            <md-input-container >
-                <label>Project Name</label>
-                <input ng-model="builder.team.newProject.projectName" />
-            </md-input-container>
-        </div>
-        <div layout="column" layout-align="center center" style="padding:40px" ng-cloak>
-            <p># of teams needed:</p>
-            <div layout="column" layout-align="center center">
-                <div>
-                    <md-select ng-model="builder.team.newProject.teamCount">
-                        <md-option ng-repeat="number in [2,3,4,5,6,7,8,9]" ng-value="{{number}}">{{number}}</md-option>
-                    </md-select>
-                </div>
+<md-toolbar layout="row" class="md-hue-3">
+    <div class="md-toolbar-tools">
+        <div layout="row">
+            <div>
+                <span>Cohort: {{builder.cohort.selectedCohort.name}}</span>
             </div>
-        </div>
-
-        <div layout="row" layout-align="center center">
-            <md-button ng-show="!builder.projectBuilt" ng-click="builder.addProject()" class="md-raised md-primary">Add Project</md-button>
-            <md-button ng-show="builder.projectBuilt" ng-click="builder.build()" class="md-raised md-primary">Build Your Teams</md-button>
-            <!-- <a href="#!/manager">
-                <md-button class="md-raised md-primary">Edit Cohort</md-button>
-            </a> -->
+            <div ng-show="builder.projectBuilt">
+                <span>  --  Project: {{builder.team.focusProject.name}} ({{builder.team.focusProject.team_count}} teams needed)</span>
+            </div>
         </div>
     </div>
+</md-toolbar>
 
-    <div class="md-padding demo" flex="40">
-        <div layout="row" layout-wrap layout-align="center center">
-            <div layout="column" flex="90">
-                <div>
-                    <fieldset class="demo-fieldset">
-                        <legend class="demo-legend">List of Students</legend>
-                        <p><em>Uncheck anyone not participating in this project</em></p>
-                        <div ng-repeat="student in builder.cohort.people">
-                            <md-checkbox ng-init="student.checked = true" ng-checked="student.checked" ng-click="builder.toggleCheck(student)">{{student.name}}</md-checkbox>
-                        </div>
-                    </fieldset>
-                </div>
-            </div>
+<div layout="column" flex="50" flex-offset="25">
+
+    <div ng-show="!builder.projectBuilt" layout-gt-sm="row" layout-padding>
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Project name</label>
+            <input ng-model="builder.team.newProject.projectName">
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+            <label># of Teams Needed</label>
+            <md-select class="md-block" ng-model="builder.team.newProject.teamCount">
+                <md-option ng-repeat="number in [2,3,4,5,6,7,8,9]" ng-value="{{number}}">{{number}}</md-option>
+            </md-select>
+        </md-input-container>
+        <div layout="row" layout-align="center center">
+            <md-button ng-show="!builder.projectBuilt" ng-click="builder.addProject()" class="md-raised md-primary">Add Project</md-button>
         </div>
 
-</div>
+    </div>
 
-    <!-- md-on-open="builder.loadCohorts()" -->
+    <div ng-show="builder.projectBuilt" class="md-padding demo" flex="50" layout="column" layout-align="center center">
+        <md-button ng-click="builder.build()" class="md-raised md-primary">Build Your Teams</md-button>
+        <fieldset class="demo-fieldset" flex="90">
+            <legend class="demo-legend">List of Students</legend>
+            <p><em>Uncheck anyone not participating in this project</em></p>
+            <div ng-repeat="student in builder.cohort.people">
+                <md-checkbox ng-init="student.checked = true" ng-checked="student.checked" ng-click="builder.toggleCheck(student)">{{student.name}}</md-checkbox>
+            </div>
+        </fieldset>
+    </div>
+
 </div>
