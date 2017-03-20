@@ -26,25 +26,25 @@ angular.module('app')
 
             $mdDialog.show(confirm)
                 .then(function(result) {
-                  self.addPerson(result);
+                    self.addPerson(result);
                 });
         };
 
-                self.addCohortDialog = function(ev) {
-                    // Appending dialog to document.body to cover sidenav in docs app
-                    var confirm = $mdDialog.prompt()
-                        .title('What is the name of the new cohort?')
-                        .textContent('Sigma is a good name.')
-                        .placeholder('Cohort name')
-                        .ariaLabel('Cohort name')
-                        .targetEvent(ev)
-                        .ok('Save')
-                        .cancel('Cancel');
+        self.addCohortDialog = function(ev) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.prompt()
+                .title('What is the name of the new cohort?')
+                .textContent('Sigma is a good name.')
+                .placeholder('Cohort name')
+                .ariaLabel('Cohort name')
+                .targetEvent(ev)
+                .ok('Save')
+                .cancel('Cancel');
 
-                    $mdDialog.show(confirm)
-                        .then(function(result) {
-                          self.addCohort(result);
-                        });
-                };
+            $mdDialog.show(confirm)
+                .then(function(result) {
+                    self.addCohort(result);
+                });
+        };
 
     }]);

@@ -30,6 +30,11 @@ app.config(function ($routeProvider, $mdThemingProvider) {
         controller: 'TeamController',
         controllerAs: 'teams'
       })
+      .when('/projects', {
+        templateUrl: 'views/templates/projects.html',
+        controller: 'ProjectController',
+        controllerAs: 'projects'
+      })
       .when('/manager', {
         templateUrl: 'views/templates/manager.html',
         controller: 'ManagerController',

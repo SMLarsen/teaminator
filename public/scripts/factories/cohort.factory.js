@@ -87,11 +87,11 @@ app.factory('CohortFactory', ['$http', function($http) {
     getPeople: function() {
         return getPeople();
     },
-    addPerson: function() {
-        return addPerson();
+    addPerson: function(name) {
+        return addPerson(name);
     },
-    deletePerson: function() {
-        return deletePerson();
+    deletePerson: function(student) {
+        return deletePerson(student);
     }
 
   };

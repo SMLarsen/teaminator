@@ -1,20 +1,19 @@
+<md-toolbar layout="row" class="md-hue-3">
+    <div class="md-toolbar-tools">
+        <div layout="row">
+            <div>
+                <span>Cohort: {{builder.cohort.selectedCohort.name}}</span>
+            </div>
+            <div ng-show="builder.projectBuilt">
+                <span>  --  Project: {{builder.team.focusProject.name}} ({{builder.team.focusProject.team_count}} teams needed)</span>
+            </div>
+        </div>
+    </div>
+</md-toolbar>
+
 <div layout="column" flex="50" flex-offset="25">
 
-    <md-card>
-        <md-card-content>
-            <div layout="row">
-                <div flex="30">
-                    <span>Cohort: {{builder.cohort.selectedCohort.name}}</span>
-                </div>
-                <div flex="70">
-                    <span ng-show="builder.projectBuilt">Project: {{builder.team.focusProject.name}}</span>
-                    <span ng-show="builder.projectBuilt"> ({{builder.team.focusProject.team_count}} teams needed)</span>
-                </div>
-            </div>
-        </md-card-content>
-    </md-card>
-
-    <div ng-show="!builder.projectBuilt"  layout-gt-sm="row" layout-padding>
+    <div ng-show="!builder.projectBuilt" layout-gt-sm="row" layout-padding>
         <md-input-container class="md-block" flex-gt-sm>
             <label>Project name</label>
             <input ng-model="builder.team.newProject.projectName">
