@@ -21,11 +21,11 @@ router.get("/:id", function(req, res, next) {
 router.post('/', function(req, res) {
     pool.connect()
         .then(function(client) {
-            client.query('INSERT INTO project (name, team_count, cohort_id) VALUES ($1, $2, $3)', [req.body.projectName, req.body.teamCount, req.body.cohortId])
+            client.query('INSERT INTO project (name, team_count, cohort_id) VALUES ($1, $2, $3) RETURNING *', [req.body.projectName, req.body.teamCount, req.body.cohortId])
                 .then(function(result) {
                     client.release();
                     console.log("Success");
-                    res.sendStatus(200);
+                    res.send(result.rows[0]);
                 })
                 .catch(function(err) {
                     client.release();

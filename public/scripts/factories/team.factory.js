@@ -6,6 +6,7 @@ app.factory("TeamFactory", ["$http", function($http) {
         projectsArray: [],
         teamsArray: [],
         focusTeam: {},
+        focusProject: {},
         newProject: {}
     };
 
@@ -64,7 +65,7 @@ app.factory("TeamFactory", ["$http", function($http) {
             })
             .then((response) => {
                 getTeams(data.focusTeam.project_id);
-                data.focusTeam = {};
+                data.focusProject = {};
                 return;
             })
             .catch((err) => console.log('Unable to add Team', err));
@@ -93,7 +94,8 @@ app.factory("TeamFactory", ["$http", function($http) {
                 data: data.newProject
             })
             .then((response) => {
-                // data.newProject = {};
+                data.focusProject = response.data;
+                data.newProject = {};
                 return;
             })
             .catch((err) => console.log('Unable to add Project', err));

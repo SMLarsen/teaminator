@@ -16,6 +16,7 @@ app.factory('CohortFactory', ['$http', function($http) {
     })
     .then(function(result) {
       cohort.list = result.data;
+      return;
     })
     .catch(handleError);
   }
@@ -33,6 +34,7 @@ app.factory('CohortFactory', ['$http', function($http) {
     .then(function(response) {
       cohort.people = response.data;
       console.log(cohort.people);
+      return;
     })
     .catch(function(err) {
       console.log("GET people error: ", err);
@@ -50,7 +52,7 @@ app.factory('CohortFactory', ['$http', function($http) {
     })
     .then(function(response) {
       console.log("Successs adding student!");
-      getPeople();
+      return getPeople();
     })
     .catch(function(err) {
       // NotifiyFactory.warn(err);
@@ -65,7 +67,7 @@ app.factory('CohortFactory', ['$http', function($http) {
     })
     .then(function(response) {
       console.log("Successs deleting student!");
-      getPeople();
+      return getPeople();
     })
     .catch(function(err) {
       // NotifiyFactory.warn(err);
@@ -75,10 +77,23 @@ app.factory('CohortFactory', ['$http', function($http) {
 
   return {
     cohort: cohort,
-    getAll: getAll,
-    getPeople: getPeople,
-    addPerson: addPerson,
-    deletePerson: deletePerson
+    // getAll: getAll,
+    // getPeople: getPeople,
+    // addPerson: addPerson,
+    // deletePerson: deletePerson,
+    getAll: function() {
+        return getAll();
+    },
+    getPeople: function() {
+        return getPeople();
+    },
+    addPerson: function() {
+        return addPerson();
+    },
+    deletePerson: function() {
+        return deletePerson();
+    }
+
   };
 
 }]);
