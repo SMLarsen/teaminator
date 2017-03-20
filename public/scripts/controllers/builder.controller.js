@@ -12,6 +12,10 @@ angular.module('app').controller('BuilderController', ['$http', '$location', 'Co
     self.team.newProject = {};
     self.projectBuilt = false;
 
+    if (self.cohort.selectedCohort === null) {
+        window.location = '#!/home';
+    }
+
     self.loadCohort = function() {
         return this.cohorts;
     };
@@ -33,7 +37,7 @@ angular.module('app').controller('BuilderController', ['$http', '$location', 'Co
 
     self.build = function() {
 
-// Add team building call in here
+        // Add team building call in here
 
         $location.path('/teams');
     };

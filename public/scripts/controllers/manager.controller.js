@@ -6,6 +6,10 @@ angular.module('app')
         self.cohort = CohortFactory.cohort;
         CohortFactory.getPeople();
 
+        if (self.cohort.selectedCohort === null) {
+            window.location = '#!/home';
+        }
+
         self.addPerson = function(name) {
             CohortFactory.addPerson(name);
         };

@@ -11,10 +11,10 @@ app.factory("TeamFactory", ["$http", function($http) {
     };
 
     // Function to GET Teams
-    function getTeams(projectID) {
+    function getTeams() {
         return $http({
                 method: 'GET',
-                url: '/team/members/' + projectID
+                url: '/team/members/' + data.focusProject.id
             })
             .then((response) => {
                 buildProjectObject(response.data);
@@ -85,6 +85,20 @@ app.factory("TeamFactory", ["$http", function($http) {
             .catch((err) => console.log('Unable to retrieve Projects', err));
     }
 
+        // Function to GET aProject
+        function getProject(projectID) {
+            return $http({
+                    method: 'GET',
+                    url: '/project/one/' + projectID
+                })
+                .then((response) => {
+                    data.focusProject = response.data;
+                    console.log('data', data.focusProject);
+                    return;
+                })
+                .catch((err) => console.log('Unable to retrieve Project', err));
+        }
+
     // Function to add Project
     function addProject() {
         console.log('addProject:', data.newProject);
@@ -103,14 +117,17 @@ app.factory("TeamFactory", ["$http", function($http) {
 
     const publicApi = {
         data: data,
-        getTeams: function(projectID) {
-            return getTeams(projectID);
+        getTeams: function() {
+            return getTeams();
         },
         addTeam: function() {
             return addTeam();
         },
         getProjects: function(cohortID) {
             return getProjects(cohortID);
+        },
+        getProject: function(projectID) {
+            return getProject(projectID);
         },
         addProject: function() {
             return addProject();

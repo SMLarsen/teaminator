@@ -18,6 +18,19 @@ router.get("/:id", function(req, res, next) {
     });
 });
 
+// get a project
+router.get("/one/:id", function(req, res, next) {
+  var projectID = req.params.id;
+    pool.query('SELECT * FROM project WHERE id = $1', [projectID], function(err, result) {
+        if (err) {
+            console.log('Error getting project', err);
+            res.sendStatus(500);
+        } else {
+            res.send(result.rows[0]);
+        }
+    });
+});
+
 router.post('/', function(req, res) {
     pool.connect()
         .then(function(client) {

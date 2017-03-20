@@ -9,6 +9,10 @@ app.controller('ProjectController', function(TeamFactory, CohortFactory) {
     self.team = teamFactory.data;
     self.cohort = cohortFactory.cohort;
 
+    if (self.cohort.selectedCohort === null) {
+        window.location = '#!/home';
+    }
+
     self.getProjects = function(cohortID) {
         teamFactory.getProjects(cohortID)
             .then((response) => self.team = teamFactory.data)
