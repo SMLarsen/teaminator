@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 const express = require('express');
 const router = express.Router();
 const pg = require('pg');
@@ -7,7 +8,7 @@ var pool = new pg.Pool(config.pg);
 
 // get all projects
 router.get("/:id", function(req, res, next) {
-  var cohortID = req.params.id;
+    var cohortID = req.params.id;
     pool.query('SELECT * FROM project WHERE cohort_id = $1', [cohortID], function(err, result) {
         if (err) {
             console.log('Error getting projects', err);
@@ -20,7 +21,7 @@ router.get("/:id", function(req, res, next) {
 
 // get a project
 router.get("/one/:id", function(req, res, next) {
-  var projectID = req.params.id;
+    var projectID = req.params.id;
     pool.query('SELECT * FROM project WHERE id = $1', [projectID], function(err, result) {
         if (err) {
             console.log('Error getting project', err);

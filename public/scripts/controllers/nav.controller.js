@@ -9,6 +9,4 @@ app.controller('NavController', function(TeamFactory, CohortFactory) {
     self.team = teamFactory.data;
     self.cohort = cohortFactory.cohort;
 
-    console.log('nav:', self.cohort.selectedCohort === null);
-
 }); //end controller

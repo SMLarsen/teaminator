@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-app.factory("TeamFactory", ["$http", function($http) {
+app.factory("TeamFactory", ["$http", "CohortFactory", function($http, CohortFactory) {
     console.log('TeamFactory started');
 
     let data = {
@@ -60,15 +60,18 @@ app.factory("TeamFactory", ["$http", function($http) {
         console.log('buildTeams:', data.focusTeam);
         return $http({
                 method: 'POST',
-                url: '/team',
-                data: data.focusTeam
+                url: '/team/build',
+                data: {
+                    project: data.focusProject,
+                    pool: CohortFactory.cohort.people
+                }
             })
             .then((response) => {
-                getTeams(data.focusTeam.project_id);
-                data.focusProject = {};
+                console.log('Teams added, now retrieving for:', data.focusTeam.project_sid);
+                // getTeams(data.focusTeam.project_id);
                 return;
             })
-            .catch((err) => console.log('Unable to add Team', err));
+            .catch((err) => console.log('Unable to build Teams', err));
     } // End buildTeams
 
     // Function to add Team

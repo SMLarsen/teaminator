@@ -10,16 +10,16 @@ angular.module('app').controller('BuilderController', ['$http', '$location', 'Co
     CohortFactory.getPeople();
     self.team.newProject = {};
     self.projectBuilt = false;
-    self.teamCount;
+    self.teamCount = 0;
     self.projectName = '';
 
     if (self.cohort.selectedCohort === null) {
         window.location = '#!/home';
     }
-
-    self.loadCohort = function() {
-        return this.cohorts;
-    };
+    //
+    // self.loadCohort = function() {
+    //     return this.cohorts;
+    // };
 
     self.toggleCheck = function(student) {
         student.checked = !student.checked;
@@ -36,12 +36,11 @@ angular.module('app').controller('BuilderController', ['$http', '$location', 'Co
             .catch((err) => console.log("Error adding project"));
     };
 
-    self.build = function() {
-        var cohortId = CohortFactory.cohortId;
+    self.buildTeams = function() {
         console.log('Time to build teams');
         TeamFactory.buildTeams()
         .then((response) => {
-          console.log('Teams built');
+          $location.path('/teams');
         })
         .catch((err) => console.log('Error building teams'));
     };
