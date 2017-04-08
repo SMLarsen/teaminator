@@ -2,15 +2,16 @@
 angular.module('app').controller('BuilderController', ['$http', '$location', 'CohortFactory', 'TeamFactory', '$route', function($http, $location, CohortFactory, TeamFactory, $route) {
 
     console.log('builder controller running');
-    let self = this;
 
-    // TODO: ensure cohort exists
+    let self = this;
 
     self.cohort = CohortFactory.cohort;
     self.team = TeamFactory.data;
     CohortFactory.getPeople();
     self.team.newProject = {};
     self.projectBuilt = false;
+    self.teamCount;
+    self.projectName = '';
 
     if (self.cohort.selectedCohort === null) {
         window.location = '#!/home';
@@ -36,28 +37,21 @@ angular.module('app').controller('BuilderController', ['$http', '$location', 'Co
     };
 
     self.build = function() {
-
-        // Add team building call in here
-
-        $location.path('/teams');
+        var cohortId = CohortFactory.cohortId;
+        console.log('clicked');
+        $http({
+                method: "POST",
+                url: "/project",
+                data: {
+                    projectName: self.projectName,
+                    teamCount: self.teamCount,
+                    cohortId: cohortId
+                }
+            })
+            .then(function(res) {
+                console.log("SUCCESS");
+                $location.path('/teams');
+            });
     };
-
-    // self.build = function () {
-    //   let cohortId = CohortFactory.cohortId;
-    //   console.log('clicked');
-    //   $http({
-    //     method: "POST",
-    //     url: "/project",
-    //     data: {
-    //       projectName: self.projectName,
-    //       teamCount : self.teamCount,
-    //       cohortId: cohortId
-    //     }
-    //   })
-    //   .then(function(res) {
-    //     console.log("SUCCESS");
-    //     $location.path('/teams');
-    //   });
-    // };
 
 }]); //End controller
