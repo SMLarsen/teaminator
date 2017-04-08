@@ -20,7 +20,7 @@ app.config(function ($routeProvider, $mdThemingProvider) {
         controller: 'NavController',
         controllerAs: 'nav'
       })
-      .when('/builder/:cohortId', {
+      .when('/builder', {
         templateUrl: 'views/templates/builder.html',
         controller: 'BuilderController',
         controllerAs: 'builder'
@@ -29,6 +29,11 @@ app.config(function ($routeProvider, $mdThemingProvider) {
         templateUrl: 'views/templates/teams.html',
         controller: 'TeamController',
         controllerAs: 'teams'
+      })
+      .when('/projects', {
+        templateUrl: 'views/templates/projects.html',
+        controller: 'ProjectController',
+        controllerAs: 'projects'
       })
       .when('/manager', {
         templateUrl: 'views/templates/manager.html',

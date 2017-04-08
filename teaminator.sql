@@ -47,5 +47,46 @@ team_id INTEGER REFERENCES team,
 person_id INTEGER REFERENCES person
 );
 
-INSERT INTO team (project_id, team_size)
-VALUES (
+--INSERT INTO team (project_id, team_size)
+--VALUES (
+
+DROP TABLE pair;
+
+CREATE TABLE pair (
+id SERIAL PRIMARY KEY,
+person1_id INTEGER REFERENCES person ON DELETE CASCADE,
+person2_id INTEGER REFERENCES person ON DELETE CASCADE,
+times_paired INTEGER DEFAULT 0
+);
+
+INSERT INTO pair (person1_id, person2_id) VALUES
+(1, 5),
+(1, 6),
+(1, 7),
+(1, 8),
+(1, 9),
+(1, 11),
+(1, 14),
+(5, 6),
+(5, 7),
+(5, 8),
+(5, 9),
+(5, 11),
+(5, 14),
+(6, 7),
+(6, 8),
+(6, 9),
+(6, 11),
+(6, 14),
+(7, 8),
+(7, 9),
+(7, 11),
+(7, 14),
+(8, 9),
+(8, 11),
+(8, 14),
+(11, 14)
+;
+
+
+

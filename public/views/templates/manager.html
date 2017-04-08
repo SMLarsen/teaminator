@@ -1,37 +1,47 @@
-<md-toolbar class="cohort-manager-toolbar" layout="row" class="md-hue-3">
-  <div class="md-toolbar-tools">
-    <span>Cohort Manager for {{manager.cohort.selectedCohort.name}}</span>
-  </div>
+<md-toolbar layout="row" class="md-hue-3">
+    <div class="md-toolbar-tools">
+        <span>Cohort Manager for {{manager.cohort.selectedCohort.name}}</span>
+    </div>
 </md-toolbar>
+
 
 <md-content class="md-padding" layout-xs="column" layout="row">
 
-  <md-card>
-    <md-card-title>
-      <md-card-title-text>
-        <span class="md-headline">Add Member</span>
-      </md-card-title-text>
-    </md-card-title>
-    <md-card-actions layout="row" layout-align="end center">
-      <md-input-container>
-        <input type="text" min="1" id="member" name="cohortMember" ng-model="newMember" placeholder="Name">
-        <md-button class="md-primary md-raised" ng-click="manager.addPerson(newMember)">Submit</md-button>
-      </md-input-container>
-    </md-card-actions>
-  </md-card>
-
-  <md-card>
-    <md-card-title>
-      <md-card-title-text>
-        <span class="md-headline">Cohort Members</span>
-      </md-card-title-text>
-    </md-card-title>
-    <md-list>
-      <md-list-item ng-repeat="student in manager.cohort.people">
-        <md-button class="md-raised md-warn md-hue-2" ng-click="manager.deletePerson(student)">Delete</md-button>
-        <span>{{student.name}}</span>
-      </md-list-item>
-    </md-list>
-  </md-card>
+    <md-card flex="80">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Cohort Members</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-list>
+            <md-list-item ng-repeat="student in manager.cohort.people">
+                <md-button class="md-raised md-warn md-hue-2" ng-click="manager.deletePerson(student)">Delete</md-button>
+                <span>{{student.name}}</span>
+            </md-list-item>
+        </md-list>
+    </md-card>
 
 </md-content>
+
+<md-fab-speed-dial  style="position:fixed !important;" md-open="false" ng-mouseenter md-direction="up" class="md-scale md-fab-bottom-right">
+    <md-fab-trigger>
+        <md-button aria-label="menu" class="md-fab md-accent">
+            <md-icon md-svg-src="../assets/ic_add_white_24px.svg"></md-icon>
+        </md-button>
+    </md-fab-trigger>
+
+    <md-fab-actions>
+        <md-button ng-click="manager.addPersonDialog($event)" aria-label="Add Person" class="md-fab md-raised md-primary md-mini">
+            <md-tooltip md-direction="left" md-visible="tooltipVisible" md-autohide="false">
+                Add Person
+            </md-tooltip>
+            <md-icon md-svg-src="../assets/ic_person_add_white_24px.svg" aria-label="Add Person"></md-icon>
+        </md-button>
+        <md-button ng-click="manager.addCohortDialog($event)" aria-label="Add Cohort" class="md-fab md-raised md-primary md-mini">
+            <md-tooltip md-direction="left" md-visible="tooltipVisible" md-autohide="false">
+                Add Cohort
+            </md-tooltip>
+            <md-icon md-svg-src="../assets/ic_group_add_white_24px.svg" aria-label="Add Cohort"></md-icon>
+        </md-button>
+    </md-fab-actions>
+</md-fab-speed-dial>

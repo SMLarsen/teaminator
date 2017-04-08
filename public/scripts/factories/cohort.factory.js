@@ -1,10 +1,11 @@
+/*jshint esversion: 6 */
 app.factory('CohortFactory', ['$http', function($http) {
 
   var cohort = {
     list: null,
     selectedCohort: null,
     people: []
-  }
+  };
 
   getAll();
 
@@ -15,12 +16,13 @@ app.factory('CohortFactory', ['$http', function($http) {
     })
     .then(function(result) {
       cohort.list = result.data;
+      return;
     })
     .catch(handleError);
   }
 
   function handleError(err) {
-    var message = [err.config.method, err.config.url, "error:"].join(" ")
+    var message = [err.config.method, err.config.url, "error:"].join(" ");
     console.log(message, err);
   }
 
@@ -32,10 +34,11 @@ app.factory('CohortFactory', ['$http', function($http) {
     .then(function(response) {
       cohort.people = response.data;
       console.log(cohort.people);
+      return;
     })
     .catch(function(err) {
       console.log("GET people error: ", err);
-    })
+    });
   }
 
   function addPerson(studentName) {
@@ -49,7 +52,7 @@ app.factory('CohortFactory', ['$http', function($http) {
     })
     .then(function(response) {
       console.log("Successs adding student!");
-      getPeople();
+      return getPeople();
     })
     .catch(function(err) {
       // NotifiyFactory.warn(err);
@@ -60,11 +63,11 @@ app.factory('CohortFactory', ['$http', function($http) {
   function deletePerson(student) {
     return $http({
       method: 'DELETE',
-      url: '/person/' + student.id    
+      url: '/person/' + student.id
     })
     .then(function(response) {
       console.log("Successs deleting student!");
-      getPeople();
+      return getPeople();
     })
     .catch(function(err) {
       // NotifiyFactory.warn(err);
@@ -74,10 +77,23 @@ app.factory('CohortFactory', ['$http', function($http) {
 
   return {
     cohort: cohort,
-    getAll: getAll,
-    getPeople: getPeople,
-    addPerson: addPerson,
-    deletePerson: deletePerson
+    // getAll: getAll,
+    // getPeople: getPeople,
+    // addPerson: addPerson,
+    // deletePerson: deletePerson,
+    getAll: function() {
+        return getAll();
+    },
+    getPeople: function() {
+        return getPeople();
+    },
+    addPerson: function(name) {
+        return addPerson(name);
+    },
+    deletePerson: function(student) {
+        return deletePerson(student);
+    }
+
   };
 
 }]);

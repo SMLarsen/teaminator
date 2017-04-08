@@ -1,0 +1,19 @@
+<div>
+
+    <md-toolbar layout="row" class="md-hue-3">
+        <div class="md-toolbar-tools">
+            <span>Projects in {{projects.cohort.selectedCohort.name}} Cohort</span>
+        </div>
+    </md-toolbar>
+
+    <md-content flex="50" flex-offset="25">
+        <md-list flex>
+            <md-list-item ng-repeat="project in projects.team.projectsArray" ng-click="null">
+                <md-button class="md-primary md-raised" ng-click="projects.getTeams()">Get Teams</md-button>
+                <div class="md-list-item-text" layout="column">
+                    <h4>{{ project.name }}</h4>
+                </div>
+            </md-list-item>
+        </md-list>
+    </md-content>
+</div>

@@ -1,16 +1,39 @@
-<h1>Teams</h1>
+<md-toolbar layout="row" class="md-hue-3">
+    <div class="md-toolbar-tools">
+        <span>Teams in {{teams.cohort.selectedCohort.name}}</span>
+        <span ng-show="teams.projectSelected"> : {{teams.team.focusProject.name}} Project</span>
+        <span ng-show="!teams.projectSelected"> : Please Select a Project</span>
+    </div>
+</md-toolbar>
 
-<md-content layout-padding>
-    <div>
+<md-content flex="50" flex-offset="25">
+    <div ng-show="!teams.projectSelected">
         <form name="teamForm">
+            <md-input-container>
+                <label>Select Project…</label>
 
-            <div layout-gt-xs="row">
-                <md-input-container class="md-block" flex-gt-xs>
-                    <label>Project ID</label>
-                    <input ng-model="projectID">
-                </md-input-container>
-            </div>
+                <md-select ng-model="teams.selectedProject" ng-change="teams.getProject()">
+                    <md-option ng-repeat="project in teams.team.projectsArray" ng-value="project.id">
+                        {{project.name}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
         </form>
     </div>
+
+    <md-list flex>
+        <md-list-item ng-repeat="team in teams.team.teamsArray" ng-click="null">
+            <div class="md-list-item-text" layout="column">
+                <h4>{{ team.teamName }}</h4>
+            </div>
+            <md-list flex>
+                <md-list-item ng-repeat="person in team.members" ng-click="null">
+                    <div class="md-list-item-text" layout="column">
+                        <p>{{ person.personName }}</p>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </md-list-item>
+    </md-list>
+
 </md-content>
-{{teams.data.teamsArray}}
