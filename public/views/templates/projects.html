@@ -9,7 +9,7 @@
     <md-content flex="50" flex-offset="25">
         <md-list flex>
             <md-list-item ng-repeat="project in projects.team.projectsArray" ng-click="null">
-                <md-button class="md-primary md-raised" ng-click="projects.getTeams()">Get Teams</md-button>
+                <md-button class="md-primary md-raised" ng-click="projects.getTeams(project)">Get Teams</md-button>
                 <div class="md-list-item-text" layout="column">
                     <h4>{{ project.name }}</h4>
                 </div>

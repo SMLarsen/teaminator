@@ -38,20 +38,12 @@ angular.module('app').controller('BuilderController', ['$http', '$location', 'Co
 
     self.build = function() {
         var cohortId = CohortFactory.cohortId;
-        console.log('clicked');
-        $http({
-                method: "POST",
-                url: "/project",
-                data: {
-                    projectName: self.projectName,
-                    teamCount: self.teamCount,
-                    cohortId: cohortId
-                }
-            })
-            .then(function(res) {
-                console.log("SUCCESS");
-                $location.path('/teams');
-            });
+        console.log('Time to build teams');
+        TeamFactory.buildTeams()
+        .then((response) => {
+          console.log('Teams built');
+        })
+        .catch((err) => console.log('Error building teams'));
     };
 
 }]); //End controller

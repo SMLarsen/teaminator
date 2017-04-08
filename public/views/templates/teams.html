@@ -9,11 +9,11 @@
 <md-content flex="50" flex-offset="25">
     <div ng-show="!teams.projectSelected">
         <form name="teamForm">
-            <md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
                 <label>Select Project…</label>
 
                 <md-select ng-model="teams.selectedProject" ng-change="teams.getProject()">
-                    <md-option ng-repeat="project in teams.team.projectsArray" ng-value="project.id">
+                    <md-option ng-repeat="project in teams.team.projectsArray" ng-value="project.id" placeholder="teams.selectedProject">
                         {{project.name}}
                     </md-option>
                 </md-select>

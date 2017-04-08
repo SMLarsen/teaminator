@@ -10,18 +10,16 @@ app.controller('TeamController', function(TeamFactory, CohortFactory) {
     self.cohort = cohortFactory.cohort;
 
     if (self.cohort.selectedCohort === null) {
-      window.location = '#!/home';
+        window.location = '#!/home';
     }
 
     if (self.team.focusProject.id === undefined) {
         self.projectSelected = false;
     } else {
         self.projectSelected = true;
-        teamFactory.getTeams()
+        teamFactory.getTeams(self.team.focusProject.id)
             .catch((err) => console.log("Error getting teams"));
     }
-
-    console.log('projectSelected', self.projectSelected);
 
     self.getProjects = function(cohortID) {
         teamFactory.getProjects(cohortID)
@@ -29,13 +27,13 @@ app.controller('TeamController', function(TeamFactory, CohortFactory) {
             .catch((err) => console.log('Error getting projects', err));
     };
 
+    self.getProjects(self.cohort.selectedCohort.id);
+
     self.getProject = function() {
         teamFactory.getProject(self.selectedProject)
             .then((response) => self.getTeams(self.selectedProject))
             .catch((err) => console.log('Error getting project', err));
     };
-
-    self.getProjects(self.cohort.selectedCohort.id);
 
     self.getTeams = function(projectID) {
         teamFactory.getTeams(projectID)

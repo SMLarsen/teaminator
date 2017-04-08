@@ -11,10 +11,10 @@ app.factory("TeamFactory", ["$http", function($http) {
     };
 
     // Function to GET Teams
-    function getTeams() {
+    function getTeams(projectID) {
         return $http({
                 method: 'GET',
-                url: '/team/members/' + data.focusProject.id
+                url: '/team/members/' + projectID
             })
             .then((response) => {
                 buildProjectObject(response.data);
@@ -55,6 +55,22 @@ app.factory("TeamFactory", ["$http", function($http) {
         }
     }
 
+    // Function to build Teams
+    function buildTeams() {
+        console.log('buildTeams:', data.focusTeam);
+        return $http({
+                method: 'POST',
+                url: '/team',
+                data: data.focusTeam
+            })
+            .then((response) => {
+                getTeams(data.focusTeam.project_id);
+                data.focusProject = {};
+                return;
+            })
+            .catch((err) => console.log('Unable to add Team', err));
+    } // End buildTeams
+
     // Function to add Team
     function addTeam() {
         console.log('addTeam:', data.focusTeam);
@@ -85,19 +101,19 @@ app.factory("TeamFactory", ["$http", function($http) {
             .catch((err) => console.log('Unable to retrieve Projects', err));
     }
 
-        // Function to GET aProject
-        function getProject(projectID) {
-            return $http({
-                    method: 'GET',
-                    url: '/project/one/' + projectID
-                })
-                .then((response) => {
-                    data.focusProject = response.data;
-                    console.log('data', data.focusProject);
-                    return;
-                })
-                .catch((err) => console.log('Unable to retrieve Project', err));
-        }
+    // Function to GET aProject
+    function getProject(projectID) {
+        return $http({
+                method: 'GET',
+                url: '/project/one/' + projectID
+            })
+            .then((response) => {
+                data.focusProject = response.data;
+                console.log('data', data.focusProject);
+                return;
+            })
+            .catch((err) => console.log('Unable to retrieve Project', err));
+    }
 
     // Function to add Project
     function addProject() {
@@ -117,8 +133,11 @@ app.factory("TeamFactory", ["$http", function($http) {
 
     const publicApi = {
         data: data,
-        getTeams: function() {
-            return getTeams();
+        buildTeams: function() {
+            return buildTeams();
+        },
+        getTeams: function(projectID) {
+            return getTeams(projectID);
         },
         addTeam: function() {
             return addTeam();

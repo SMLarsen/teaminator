@@ -41,7 +41,6 @@ router.get("/members/:id", function(req, res) {
         });
 });
 
-module.exports = router;
 router.post("/", function(req, res) {
   console.log('req.body:', req.body);
     pool.connect()
@@ -59,7 +58,6 @@ router.post("/", function(req, res) {
         });
 });
 
-module.exports = router;
 router.put("/", function(req, res) {
   console.log('req.body:', req.body);
     pool.connect()
@@ -77,7 +75,6 @@ router.put("/", function(req, res) {
         });
 });
 
-module.exports = router;
 router.delete("/", function(req, res) {
   console.log('req.body:', req.body);
     pool.connect()
