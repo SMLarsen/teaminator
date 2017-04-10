@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 var unassigned;
 
 // ArrayOfPersonIds, ArrayOfPairingObjects, Number -> ArrayOfGroups
@@ -12,8 +13,8 @@ function startGroups (pairings, numGroups) {
 }
 
 function getUnassignedPair (pairings) {
-  var pair = pairings.find((pairing) => 
-    unassigned.indexOf(pairing.person1) > -1 && 
+  var pair = pairings.find((pairing) =>
+    unassigned.indexOf(pairing.person1) > -1 &&
     unassigned.indexOf(pairing.person2) > -1);
   return [ pair.person1, pair.person2 ];
 }
@@ -37,8 +38,8 @@ function fillGroups(groups, pairings) {
 
 function getNextMember(group, pairings) {
   var pairing = pairings.find((pairing) => {
-    return (unassigned.indexOf(pairing.person1) > -1 && group.indexOf(pairing.person2) > -1) || 
-           (unassigned.indexOf(pairing.person2) > -1 && group.indexOf(pairing.person1) > -1)
+    return (unassigned.indexOf(pairing.person1) > -1 && group.indexOf(pairing.person2) > -1) ||
+           (unassigned.indexOf(pairing.person2) > -1 && group.indexOf(pairing.person1) > -1);
   });
 
   return unassigned.indexOf(pairing.person1) > -1 ? pairing.person1 : pairing.person2;
@@ -54,7 +55,7 @@ function makeGroups(unassignedArr, pairings, numGroups) {
 
 function pairCounter(groups, pairings) {
   var pairIndex = [];
-  var pairs = []; 
+  var pairs = [];
   for (var i = 0, len = groups.length; i < len; i++) {
     pairs = pairings.filter((pairing) => groups[i].indexOf(pairing.person1) > -1 && groups[i].indexOf(pairing.person2) > -1 )
     pairIndex.push(pairs.reduce(countPairs, 0));

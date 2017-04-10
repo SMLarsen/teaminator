@@ -6,14 +6,14 @@
     </div>
 </md-toolbar>
 
-<md-content flex="50" flex-offset="25">
+<md-content flex="100">
     <div ng-show="!teams.projectSelected">
         <form name="teamForm">
-            <md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
                 <label>Select Project…</label>
 
                 <md-select ng-model="teams.selectedProject" ng-change="teams.getProject()">
-                    <md-option ng-repeat="project in teams.team.projectsArray" ng-value="project.id">
+                    <md-option ng-repeat="project in teams.team.projectsArray" ng-value="project.id" placeholder="teams.selectedProject">
                         {{project.name}}
                     </md-option>
                 </md-select>
@@ -21,19 +21,16 @@
         </form>
     </div>
 
-    <md-list flex>
-        <md-list-item ng-repeat="team in teams.team.teamsArray" ng-click="null">
-            <div class="md-list-item-text" layout="column">
-                <h4>{{ team.teamName }}</h4>
-            </div>
-            <md-list flex>
-                <md-list-item ng-repeat="person in team.members" ng-click="null">
-                    <div class="md-list-item-text" layout="column">
-                        <p>{{ person.personName }}</p>
-                    </div>
-                </md-list-item>
-            </md-list>
-        </md-list-item>
-    </md-list>
+    <div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
+
+      <md-whiteframe layout="column" class="md-whiteframe-1dp" flex="teams.teamWidth"  style="padding: 8px;"flex-offset="teams.teamOffsetWidth" ng-repeat="team in teams.team.teamsArray" layout-align="center start">
+        <h4>{{ team.teamName }}</h4>
+        <ul ng-repeat="person in team.members" layout-align="start">
+          <li>{{person.personName}}</li>
+        </ul>
+      </md-whiteframe>
+
+    </div>
+
 
 </md-content>

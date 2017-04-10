@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-app.controller('ProjectController', function(TeamFactory, CohortFactory) {
+app.controller('ProjectController', ['TeamFactory', 'CohortFactory', '$location', function(TeamFactory, CohortFactory, $location) {
     console.log("Project controller running");
 
     const teamFactory = TeamFactory;
@@ -21,10 +21,9 @@ app.controller('ProjectController', function(TeamFactory, CohortFactory) {
 
     self.getProjects(self.cohort.selectedCohort.id);
 
-    self.getTeams = function() {
-        teamFactory.getTeams(projectID)
-            .then((response) => self.team = teamFactory.data)
-            .catch((err) => console.log('Error getting teams', err));
+    self.getTeams = function(project) {
+      self.team.focusProject = project;
+      $location.path('/teams');
     };
 
-}); //end controller
+}]); //end controller
