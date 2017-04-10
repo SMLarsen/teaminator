@@ -16,16 +16,12 @@ app.factory("TeamFactory", ["$http", "CohortFactory", function($http, CohortFact
                 method: 'GET',
                 url: '/team/members/' + projectID
             })
-            .then((response) => {
-                buildProjectObject(response.data);
-                console.log('data', data);
-                return;
-            })
+            .then((response) => buildProjectObject(response.data))
             .catch((err) => console.log('Unable to retrieve Team Members', err));
     }
 
     function buildProjectObject(teams) {
-        console.log('teams', teams);
+        data.teamsArray = [];
         let members = [];
         for (let i = 0; i < teams.length; i++) {
             let member = {};

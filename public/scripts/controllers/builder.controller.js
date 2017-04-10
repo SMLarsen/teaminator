@@ -7,7 +7,6 @@ angular.module('app').controller('BuilderController', ['$http', '$location', 'Co
 
     self.cohort = CohortFactory.cohort;
     self.team = TeamFactory.data;
-    CohortFactory.getPeople();
     self.team.newProject = {};
     self.projectBuilt = false;
     self.teamCount = 0;
@@ -15,11 +14,9 @@ angular.module('app').controller('BuilderController', ['$http', '$location', 'Co
 
     if (self.cohort.selectedCohort === null) {
         window.location = '#!/home';
+    } else {
+      CohortFactory.getPeople();
     }
-    //
-    // self.loadCohort = function() {
-    //     return this.cohorts;
-    // };
 
     self.toggleCheck = function(student) {
         student.checked = !student.checked;

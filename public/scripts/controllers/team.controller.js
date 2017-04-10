@@ -38,8 +38,8 @@ app.controller('TeamController', function(TeamFactory, CohortFactory) {
         teamFactory.getTeams(projectID)
             .then((response) => {
                 self.projectSelected = true;
-                console.log('focusProject', self.team.focusProject);
-                self.teamWidth = 90 / self.team.focusProject.team_count;
+                self.teamWidth = 80 / self.team.focusProject.team_count;
+                self.teamOffsetWidth = 20 / self.team.focusProject.team_count;
             })
             .catch((err) => console.log('Error getting teams', err));
     }
