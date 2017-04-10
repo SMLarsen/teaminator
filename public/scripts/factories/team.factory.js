@@ -66,11 +66,6 @@ app.factory("TeamFactory", ["$http", "CohortFactory", function($http, CohortFact
                     pool: CohortFactory.cohort.people
                 }
             })
-            .then((response) => {
-                console.log('Teams added, now retrieving for:', data.focusTeam.project_sid);
-                // getTeams(data.focusTeam.project_id);
-                return;
-            })
             .catch((err) => console.log('Unable to build Teams', err));
     } // End buildTeams
 

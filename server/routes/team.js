@@ -112,28 +112,31 @@ router.post("/build", function(req, res, next) {
         for (var j = 0; j < teams[i].team_size; j++) {
             person = teamPool.splice(0, 1);
             personQuery += " (" + (teams[i].id) + ", " + person[0].id + "),";
-    }
-}
-
-console.log('personQuery', personQuery); personQuery = personQuery.substring(0, personQuery.length - 1); personQuery += " RETURNING *"; console.log('personQuery', personQuery);
-
-pool.connect()
-.then(function(client) {
-    client.query(personQuery, function(err, result) {
-        if (err) {
-            console.log('Error posting team members', err);
-            res.sendStatus(500);
-        } else {
-            members = result.rows;
-            console.log("Team members added:", members);
-            res.sendStatus(201);
         }
-    });
-})
-.catch(function(err) {
-    console.log("Error connecting to DB: ", err);
-    res.sendStatus(500);
-});
+    }
+
+    console.log('personQuery', personQuery);
+    personQuery = personQuery.substring(0, personQuery.length - 1);
+    personQuery += " RETURNING *";
+    console.log('personQuery', personQuery);
+
+    pool.connect()
+        .then(function(client) {
+            client.query(personQuery, function(err, result) {
+                if (err) {
+                    console.log('Error posting team members', err);
+                    res.sendStatus(500);
+                } else {
+                    members = result.rows;
+                    console.log("Team members added:", members);
+                    res.sendStatus(201);
+                }
+            });
+        })
+        .catch(function(err) {
+            console.log("Error connecting to DB: ", err);
+            res.sendStatus(500);
+        });
 });
 
 function shuffle(array) {

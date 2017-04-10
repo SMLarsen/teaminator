@@ -17,8 +17,7 @@ app.controller('TeamController', function(TeamFactory, CohortFactory) {
         self.projectSelected = false;
     } else {
         self.projectSelected = true;
-        teamFactory.getTeams(self.team.focusProject.id)
-            .catch((err) => console.log("Error getting teams"));
+        getTeams(self.team.focusProject.id);
     }
 
     self.getProjects = function(cohortID) {
@@ -31,14 +30,18 @@ app.controller('TeamController', function(TeamFactory, CohortFactory) {
 
     self.getProject = function() {
         teamFactory.getProject(self.selectedProject)
-            .then((response) => self.getTeams(self.selectedProject))
+            .then((response) => getTeams(self.selectedProject))
             .catch((err) => console.log('Error getting project', err));
     };
 
-    self.getTeams = function(projectID) {
+    function getTeams(projectID) {
         teamFactory.getTeams(projectID)
-            .then((response) => self.projectSelected = true)
+            .then((response) => {
+                self.projectSelected = true;
+                console.log('focusProject', self.team.focusProject);
+                self.teamWidth = 90 / self.team.focusProject.team_count;
+            })
             .catch((err) => console.log('Error getting teams', err));
-    };
+    }
 
 }); //end controller

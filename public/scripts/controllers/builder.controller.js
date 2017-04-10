@@ -37,7 +37,6 @@ angular.module('app').controller('BuilderController', ['$http', '$location', 'Co
     };
 
     self.buildTeams = function() {
-        console.log('Time to build teams');
         TeamFactory.buildTeams()
         .then((response) => {
           $location.path('/teams');
