@@ -21,7 +21,7 @@
         <md-input-container class="md-block" flex-gt-sm>
             <label># of Teams Needed</label>
             <md-select class="md-block" ng-model="builder.team.newProject.teamCount">
-                <md-option ng-repeat="number in [2,3,4,5,6,7,8,9]" ng-value="{{number}}">{{number}}</md-option>
+                <md-option ng-repeat="number in builder.possibleTeamCounts" ng-value="{{number}}">{{number}}</md-option>
             </md-select>
         </md-input-container>
         <div layout="row" layout-align="center center">
