@@ -54,12 +54,20 @@ app.factory("TeamFactory", ["$http", "CohortFactory", function($http, CohortFact
     // Function to build Teams
     function buildTeams() {
         console.log('buildTeams:', data.focusTeam);
+        console.log('CohortFactory.cohort.people:', CohortFactory.cohort.people);
+        let finalPool = [];
+        CohortFactory.cohort.people.map(person => {
+          if (person.checked === true) {
+            finalPool.push(person);
+          }
+        });
+        console.log('finalPool:', finalPool);
         return $http({
                 method: 'POST',
                 url: '/team/build',
                 data: {
                     project: data.focusProject,
-                    pool: CohortFactory.cohort.people
+                    pool: finalPool
                 }
             })
             .catch((err) => console.log('Unable to build Teams', err));

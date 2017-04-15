@@ -15,7 +15,9 @@
         </md-card-title>
         <md-list>
             <md-list-item ng-repeat="student in manager.cohort.people">
-                <md-button class="md-raised md-warn md-hue-2" ng-click="manager.deletePerson(student)">Delete</md-button>
+                <md-button class="md-icon-button md-primary" ng-click="manager.deletePerson(student)">
+                  <md-icon md-svg-icon="assets/ic_delete_red_24px.svg"></md-icon>
+                </md-button>
                 <span>{{student.name}}</span>
             </md-list-item>
         </md-list>
