@@ -153,14 +153,15 @@ function shuffle(array) {
     return array;
 }
 
-router.put("/", function(req, res) {
-    console.log('req.body:', req.body);
+router.put("/name", function(req, res) {
+    console.log('team name req.body.teamName:', req.body.teamName);
+    console.log('team name req.body.teamID:', req.body.teamID);
     pool.connect()
         .then((client) => {
-            client.query('UPDATE team SET project_id = $1, team_size = $2, name = $3 WHERE id = $4', [req.body.project_id, req.body.team_size, req.body.name, req.body.id], function(err, result) {
+            client.query('UPDATE team SET name = $1 WHERE id = $2', [req.body.teamName, req.body.teamID], function(err, result) {
                 if (err) {
                     client.release();
-                    console.log('Error updating team', err);
+                    console.log('Error updating team name', err);
                     res.sendStatus(500);
                 } else {
                     client.release();

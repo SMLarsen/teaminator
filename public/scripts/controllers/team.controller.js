@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-app.controller('TeamController', function(TeamFactory, CohortFactory) {
+app.controller('TeamController', function(TeamFactory, CohortFactory, $mdDialog) {
     console.log("Team controller running");
 
     const teamFactory = TeamFactory;
@@ -42,6 +42,31 @@ app.controller('TeamController', function(TeamFactory, CohortFactory) {
                 self.teamOffsetWidth = 20 / self.team.focusProject.team_count;
             })
             .catch((err) => console.log('Error getting teams', err));
+    }
+
+    self.editTeamName = function(ev, team) {
+        // Appending dialog to document.body to cover sidenav in docs app
+        var confirm = $mdDialog.prompt()
+            .title('Change Team Name')
+            .textContent('Pick a new name for the team')
+            .placeholder('Starship Troopers')
+            .ariaLabel('Team name')
+            .initialValue('Starship Troopers')
+            .targetEvent(ev)
+            .ok('Change Name!')
+            .cancel('Discard');
+
+        $mdDialog.show(confirm).then(function(result) {
+            updateTeamName(team, result);
+        });
+    };
+
+    function updateTeamName(team, name) {
+        console.log('team:', team);
+        console.log('name:', name);
+        teamFactory.updateTeamName(team, name)
+            .catch((err) => console.log('Error updating team name', err));
+
     }
 
 }); //end controller

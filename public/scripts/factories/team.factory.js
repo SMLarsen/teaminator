@@ -81,6 +81,20 @@ app.factory("TeamFactory", ["$http", "CohortFactory", function($http, CohortFact
             .catch((err) => console.log('Unable to add Team', err));
     } // End addTeam
 
+    // Function to change Team name
+    function updateTeamName(team, name) {
+        return $http({
+                method: 'PUT',
+                url: '/team/name',
+                data: {
+                  teamID: team.teamID,
+                  teamName: name
+                }
+            })
+            .then((response) => getTeams(team.projectID))
+            .catch((err) => console.log('Unable to update team name', err));
+    } // End updateTeamName
+
     // Function to GET Projects
     function getProjects(cohortID) {
         return $http({
@@ -135,6 +149,9 @@ app.factory("TeamFactory", ["$http", "CohortFactory", function($http, CohortFact
         },
         addTeam: function() {
             return addTeam();
+        },
+        updateTeamName: function(team, name) {
+            return updateTeamName(team, name);
         },
         getProjects: function(cohortID) {
             return getProjects(cohortID);
