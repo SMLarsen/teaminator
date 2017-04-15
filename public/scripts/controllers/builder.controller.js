@@ -11,11 +11,21 @@ angular.module('app').controller('BuilderController', ['$http', '$location', 'Co
     self.projectBuilt = false;
     self.teamCount = 0;
     self.projectName = '';
+    self.possibleTeamCounts = [];
 
     if (self.cohort.selectedCohort === null) {
         window.location = '#!/home';
     } else {
-      CohortFactory.getPeople();
+        CohortFactory.getPeople()
+        .then((response) => {
+          if (self.cohort.people.length < 2) {
+            return alert('Add people to cohort before building teams.');
+          } else {
+            for (let i = 2; i <= self.cohort.people.length / 2; i++) {
+              self.possibleTeamCounts.push(i);
+            }
+          }
+        });
     }
 
     self.toggleCheck = function(student) {
@@ -23,6 +33,14 @@ angular.module('app').controller('BuilderController', ['$http', '$location', 'Co
     };
 
     self.addProject = function() {
+      if (self.team.newProject.projectName === undefined) {
+        return alert('Be so kind as to enter a project name');
+      } else if (self.team.newProject.teamCount === undefined) {
+        return alert('How many teams to you need?');
+      } else if (self.team.newProject.teamCount === 1) {
+        console.log('Doowah');
+      }
+
         self.team.newProject.cohortId = self.cohort.selectedCohort.id;
         TeamFactory.addProject()
             .then((response) => {
@@ -35,10 +53,10 @@ angular.module('app').controller('BuilderController', ['$http', '$location', 'Co
 
     self.buildTeams = function() {
         TeamFactory.buildTeams()
-        .then((response) => {
-          $location.path('/teams');
-        })
-        .catch((err) => console.log('Error building teams'));
+            .then((response) => {
+                $location.path('/teams');
+            })
+            .catch((err) => console.log('Error building teams'));
     };
 
 }]); //End controller

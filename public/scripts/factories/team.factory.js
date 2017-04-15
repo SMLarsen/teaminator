@@ -54,12 +54,20 @@ app.factory("TeamFactory", ["$http", "CohortFactory", function($http, CohortFact
     // Function to build Teams
     function buildTeams() {
         console.log('buildTeams:', data.focusTeam);
+        console.log('CohortFactory.cohort.people:', CohortFactory.cohort.people);
+        let finalPool = [];
+        CohortFactory.cohort.people.map(person => {
+          if (person.checked === true) {
+            finalPool.push(person);
+          }
+        });
+        console.log('finalPool:', finalPool);
         return $http({
                 method: 'POST',
                 url: '/team/build',
                 data: {
                     project: data.focusProject,
-                    pool: CohortFactory.cohort.people
+                    pool: finalPool
                 }
             })
             .catch((err) => console.log('Unable to build Teams', err));
@@ -80,6 +88,20 @@ app.factory("TeamFactory", ["$http", "CohortFactory", function($http, CohortFact
             })
             .catch((err) => console.log('Unable to add Team', err));
     } // End addTeam
+
+    // Function to change Team name
+    function updateTeamName(team, name) {
+        return $http({
+                method: 'PUT',
+                url: '/team/name',
+                data: {
+                  teamID: team.teamID,
+                  teamName: name
+                }
+            })
+            .then((response) => getTeams(team.projectID))
+            .catch((err) => console.log('Unable to update team name', err));
+    } // End updateTeamName
 
     // Function to GET Projects
     function getProjects(cohortID) {
@@ -135,6 +157,9 @@ app.factory("TeamFactory", ["$http", "CohortFactory", function($http, CohortFact
         },
         addTeam: function() {
             return addTeam();
+        },
+        updateTeamName: function(team, name) {
+            return updateTeamName(team, name);
         },
         getProjects: function(cohortID) {
             return getProjects(cohortID);

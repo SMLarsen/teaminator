@@ -23,12 +23,17 @@
 
     <div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
 
-      <md-whiteframe layout="column" class="md-whiteframe-1dp" flex="teams.teamWidth"  style="padding: 8px;"flex-offset="teams.teamOffsetWidth" ng-repeat="team in teams.team.teamsArray" layout-align="center start">
-        <h4>{{ team.teamName }}</h4>
-        <ul ng-repeat="person in team.members" layout-align="start">
-          <li>{{person.personName}}</li>
-        </ul>
-      </md-whiteframe>
+        <md-whiteframe layout="column" class="md-whiteframe-1dp" flex="teams.teamWidth" style="padding: 8px;" flex-offset="teams.teamOffsetWidth" ng-repeat="team in teams.team.teamsArray" layout-align="center start">
+            <h4>
+          <md-button class="md-icon-button md-primary" ng-click="teams.editTeamName($event, team)" aria-label="Edit team name">
+           <md-icon md-svg-icon="assets/ic_mode_edit_green_24px.svg"></md-icon>
+         </md-button>
+        {{ team.teamName }}
+      </h4>
+            <ul ng-repeat="person in team.members" layout-align="start">
+                <li>{{person.personName}}</li>
+            </ul>
+        </md-whiteframe>
 
     </div>
 
